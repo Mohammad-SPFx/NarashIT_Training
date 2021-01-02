@@ -1,0 +1,4269 @@
+Oracle Built-in Functions :
+---------------------------
+
+  -> Oracle pre-defined functions are called as Built-in functions
+
+  -> Oracle Built-in functions are classified into 4 Types
+
+I. COLUMN LEVEL FUNCTIONS
+
+II. GROUP FUNCTIONS
+
+III. CONVERSION FUNCTIONS
+
+IV. GENERAL FUNCTIONS
+
+
+   ** In Oracle Functions are Executed by using SELECT statement
+
+                select * / column_list from <table_name>;
+
+I. COLUMN LEVEL FUNCTIONS :
+---------------------------
+
+   -> These functions are applicable for each and every column values
+
+   -> Column Level Functions are classified into 3 types
+
+          i. NUMBER functions
+
+         ii. CHARACTER Functions
+
+        iii. DATE Functions
+
+i. NUMBER FUNCTIONS :
+---------------------
+
+  -> These functions are supports NUMARIC Values only
+
+ABS( ) :
+--------
+
+  -> This function converts -ve value to +ve value
+
+          Select ABS( -1000 ) from EMP;
+  
+SQL> Select ABS( -1000 ) from DUAL;
+
+ABS(-1000)
+----------
+      1000   
+
+DUAL : It is one of the oracle pre-defined table and it contains only one record. so, our function is        executed only ONE Time.
+
+SQRT( ) :
+---------
+
+  -> this function returns SQRT of given value
+
+            select sqrt( 625 ) from dual;
+
+-- what is output of the following query
+
+         select sqrt(-25) from dual;
+
+ans.  Error
+
+MOD( ) :
+--------
+
+  -> this function returns remainder
+
+  
+        select mod( 10, 2 ) from dual;
+
+o/p: 0
+
+        select mod( 13.12, 2 ) from dual;
+
+o/p:  1.12 
+
+-- waq to display who are getting ODD Salaries
+
+SQL> select * from emp where mod(sal,2)!=0;
+
+ EMPNO ENAME      JOB          MGR HIREDATE     SAL   COMM DEPTNO
+------ ---------- --------- ------ --------- ------ ------ ------
+  7566 JONES      MANAGER     7839 02-APR-81   2975            20
+        
+  
+SIGN( ) :
+---------
+
+   -> This function returns if input value is +ve returns 1
+					      -ve returns -1
+					     zero returns 0
+
+SQL>           select sign( -1000 ) from dual;
+
+SIGN(-1000)
+-----------
+         -1
+
+SQL>           select sign( 1000 ) from dual;
+
+SIGN(1000)
+----------
+         1
+
+SIN( ) :
+--------
+
+ -> it returns sin value 
+
+sql> select sin(60) from dual;
+
+COS( ) :
+--------
+ 
+  -> it returns cos value
+
+sql> select cos(90) from dual;
+
+TAN( ) :
+--------
+
+   -> it returns tan value
+
+sql> select tan(90) from dual;
+
+ROUND( ) :
+----------
+
+  -> this function is rounded to nearest value
+
+SQL> select round(16.78) from dual;
+
+ROUND(16.78)
+------------
+          17
+
+SQL> select round(16.45) from dual;
+
+ROUND(16.45)
+------------
+          16
+
+SQL> select round(16.769,1) from dual;
+
+ROUND(16.769,1)
+---------------
+           16.8
+
+SQL> select round(16.769,2) from dual;
+
+ROUND(16.769,2)
+---------------
+          16.77
+
+SQL> select round(16.543,2) from dual;
+
+ROUND(16.543,2)
+---------------
+          16.54
+  
+SQL> select round(16.769,1) from dual;
+
+ROUND(16.769,1)
+---------------
+           16.8
+
+SQL> select round(16.769,-1) from dual;
+
+ROUND(16.769,-1)
+----------------
+              20
+
+SQL> select round(146.769,-1) from dual;
+
+ROUND(146.769,-1)
+-----------------
+              150
+
+SQL> select round(168.769,-2) from dual;
+
+ROUND(168.769,-2)
+-----------------
+              200
+
+SQL> select round(434.769,-2) from dual;
+
+ROUND(434.769,-2)
+-----------------
+              400
+
+SQL> select round(0734.769,-3) from dual;
+
+ROUND(0734.769,-3)
+------------------
+              1000
+
+TRUNC( ) :
+----------
+
+  ->  this functions is not rounded to nearest value  
+
+SQL> select trunc(16.89) from dual;
+
+TRUNC(16.89)
+------------
+          16
+
+SQL> select trunc(16.89,1) from dual;
+
+TRUNC(16.89,1)
+--------------
+          16.8
+
+SQL> select trunc(16.8945,2) from dual;
+
+TRUNC(16.8945,2)
+----------------
+           16.89
+
+SQL> select trunc(16.89,-1) from dual;
+
+TRUNC(16.89,-1)
+---------------
+             10
+
+SQL> select round(16.89,-1) from dual;
+
+ROUND(16.89,-1)
+---------------
+             20
+
+
+   16.35   ->    16  
+
+   16.65   ->    17
+
+-- waq to display each employee daily wages
+
+      select empno, ename, job, sal / 30 , deptno from emp;
+
+      select empno, ename, job, round( sal / 30 ) , deptno from emp;
+
+ii. CHARACTER FUNCTIONS :
+-------------------------
+
+   -> these functions are supports char. values only
+
+lower( ) :
+----------
+
+ -> this function converts any formated string to lower case
+
+SQL>    Select lower('NARESH IT' ) from dual;
+
+LOWER('NA
+---------
+naresh it
+
+upper( ) :
+----------
+
+  -> this function converts any formated string to upper case
+
+SQL>  Select Upper('naresh it') from dual;
+
+UPPER('NA
+---------
+NARESH IT
+
+INITCAP( ) :
+------------
+
+   -> converts any formated string into Initial Capital Letter
+
+SQL>  Select Initcap('naresh it') from dual;
+
+INITCAP('
+---------
+Naresh It					    
+
+LENGTH( ) :
+-----------
+
+  -> this function  returns length of the string
+
+Sql> Select Length('NARESH IT') From Dual;
+
+
+Sql> Select Ename, lower(ename), upper(ename), initcap(ename), length(Ename) from Emp;
+
+
+-- waq to display which employee names having morethan 5 chars.
+
+       Select Ename from Emp where Length(Ename)>5;
+
+ASCII() :
+---------
+
+   -> This function converts CHAR. value to Equallent ASCCI code
+
+SQL> SELECT ASCII('A') FROM DUAL;
+
+ASCII('A')
+----------
+        65
+
+SQL> SELECT ASCII('a') FROM DUAL;
+
+ASCII('A')
+----------
+        97
+
+
+CHR( ) :
+--------
+
+  -> It converts ASCII code to Equallent CHAR value
+
+SQL> SELECT CHR(65) FROM DUAL;
+
+C
+-
+A
+
+SQL> SELECT CHR(97) FROM DUAL;
+
+C
+-
+a
+
+LPAD( ) :
+---------
+
+ -> this function returns leftside paddings(spaces )
+
+SQL> select lpad('rama',10) from dual;
+
+LPAD('RAMA
+----------
+      rama
+
+SQL> select lpad('rama',10,'*') from dual;
+
+LPAD('RAMA
+----------
+******rama
+
+Rpad( ) :
+---------
+
+  -> it returns rightside paddings
+
+SQL> select rpad('rama',10) from dual;
+
+RPAD('RAMA
+----------
+rama
+
+SQL> select rpad('rama',10,'*') from dual;
+
+RPAD('RAMA
+----------
+rama******
+
+-- WAQ to display following format output
+
+       ***NARESH IT***
+
+Nested Functions are required.
+
+  -> Function within the function is called as Nested Functions
+
+        SELECT rpad( lpad('NARESH IT',12,'*'), 15, '*' ) FROM DUAL;
+
+LTRIM( ) :
+----------
+
+ -> used to delete leftside specified matching chars.
+
+        Select ltrim('union bank of india','union') from dual; 
+
+RTRIM( ) :
+----------
+
+  -> used to delete rightside specified matching chars.
+
+        Select Rtrim('ramaaaaaa','a') from dual;
+
+TRIM( ) :
+---------
+
+  -> Used to deletes bothside matching chars.
+
+          Select Trim('a' from 'aaaaaaramaaaaa') from dual;
+
+note: by default All Trim Functions deletes Spaces
+
+           select trim('    rama   ') from dual;
+
+-- waq to display middle name from given name
+
+      'ramesh sachin tendulkar'
+ 
+SQL> Select Trim(Rtrim( Ltrim('ramesh sachin tendulkar','ramesh' ),'tendulkar'))  from dual;
+
+TRIM(R
+------
+sachin
+
+
+Concat( ) :
+-----------
+
+  -> this function used to concat two strings at a time
+
+SQL>           select concat('rama','krishna') from dual;
+
+CONCAT('RAM
+-----------
+ramakrishna
+
+SQL>           select concat('rama','krishna','raju') from dual;
+          select concat('rama','krishna','raju') from dual
+                 *
+ERROR at line 1:
+ORA-00909: invalid number of arguments
+ 
+ 
+** to pass morethan two parametes then nested functions are required
+
+SQL>  Select Concat( Concat( 'rama','krishna'), 'raju' ) from dual;
+
+CONCAT(CONCAT('
+---------------
+ramakrishnaraju
+
+SQL>       Select Concat( Concat( 'rama ','krishna '), 'raju' ) from dual;
+
+CONCAT(CONCAT('RA
+-----------------
+rama krishna raju
+
+** to concat multiple strings continuously then oracle provided Concatination Operator ( || )
+
+Example:
+--------
+
+  Select 'rama '||'krishna '||'raju' from dual;
+
+-- waq to generate following format outputs....
+
+      i. mr.king is working as a president
+
+     ii. mr.king is working as a president and getting annual salary rs.60000
+
+
+   select 'mr.'||Ename||' is working as a '||job from Emp;
+
+   Select 'mr.'||Ename||' is working as a '||job||' and getting Annual Salary Rs.'||(sal*12) from emp;
+
+REPLACE( ) :
+------------
+ 
+  -> This function replaces word by word
+
+SQL>       select replace('AXIS BANK','AXIS','UNION') FROM DUAL;
+
+REPLACE('A
+----------
+UNION BANK
+
+
+SQL>  select replace('JACK AND JUE','J','BL') FROM DUAL;
+
+REPLACE('JACKA
+--------------
+BLACK AND BLUE
+
+
+TRANSLATE( ) :
+--------------
+
+  -> it translates char. by char.
+
+SQL>          select translate('president','p',' ') from dual;
+
+TRANSLATE
+---------
+ resident
+
+SQL> select translate('abcdd','acdb','*/#$') from dual;
+
+TRANS
+-----
+*$/##
+
+
+-- waq to display which employee names contains 'A' two times only
+
+SQL>  select ename from emp where  ( length(ename) -  length( replace(ename,'A','') ) )=2;
+
+ENAME
+----------
+ADAMS
+
+SQL>  select ename from emp where  ( length(ename) -  length( replace(ename,'A','') ) )=1;
+
+ENAME
+----------
+ALLEN
+WARD
+MARTIN
+BLAKE
+CLARK
+JAMES
+
+6 rows selected.
+
+SQL>  select ename from emp where  ( length(ename) -  length( replace(ename,'A','') ) )=0;
+
+ENAME
+----------
+SMITH
+JONES
+KING
+TURNER
+FORD
+MILLER
+kiran
+
+7 rows selected.
+
+
+SUBSTR( ) :
+-----------
+
+   -> this function returns substring from given string
+
+Example:
+--------
+  
+   Select substr('rama krishna',6 ) from dual;
+
+6 -> substring displays from 6th position onwards ( position is counting from left -> right )
+
+SQL> Select substr('rama krishna',6 ) from dual;
+
+SUBSTR(
+-------
+krishna
+
+
+ex2 :
+-----
+
+   Select substr('rama krishna',6,4 ) from dual;
+
+6 -> substring displays from 6th position onwards ( position is counting from left -> right )
+
+4 -> no.of occurances
+
+SQL> Select substr('rama krishna',6 ,4 ) from dual;
+
+SUBS
+----
+kris
+     
+
+ex3:
+-----
+    
+    select substr('rama krishna', -7 ) from dual;
+
+-7  -> substring displays from 7th position onwards.  but, position is counting from RIGHT -> LEFT and
+       output displays from LEFT -> RIGHT.
+
+SQL> Select substr('rama krishna', -7 ) from dual;
+
+SUBSTR(
+-------
+krishna
+
+ex4:
+-----
+
+    select substr('rama krishna', -7,4 ) from dual;
+
+SQL>  select substr('rama krishna', -7,4 ) from dual;
+
+SUBS
+----
+kris
+
+i.q :
+-----
+
+ -- WAQ to display whose names are starting and ending chars. are same
+
+SQL> SELECT ENAME FROM EMP WHERE SUBSTR(ENAME,1,1) = SUBSTR(ENAME,-1,1);
+
+ENAME
+----------
+ARCHANA
+HEMANTH
+
+other examples:
+---------------
+
+SQL> Select * from emp where substr(JOB,4,3)='AGE';
+
+ EMPNO ENAME      JOB          MGR HIREDATE     SAL   COMM DEPTNO
+------ ---------- --------- ------ --------- ------ ------ ------
+  7566 JONES      MANAGER     7839 02-APR-81   2975            20
+  7698 BLAKE      MANAGER     7839 01-MAY-81   2850            30
+  7782 CLARK      MANAGER     7839 09-JUN-81   2550            10
+
+SQL> select 'Mr.'||ename||' is a '||substr(job,1,3)||' eater.' from emp
+								where substr(job,4,3)='AGE';
+
+SQL> select 'Mr.'||ename||' is a '||substr(job,1,3)||' eater.' from emp
+     where substr(job,4,3)='AGE';
+
+'MR.'||ENAME||'ISA'||SUBSTR(JOB,1,3)||
+--------------------------------------
+Mr.JONES is a MAN eater.
+Mr.BLAKE is a MAN eater.
+Mr.CLARK is a MAN eater.
+
+INSTR( ) :
+----------
+
+   -> this function returns Searching String Position
+
+Example :
+---------
+
+  Select Instr('ORACLE CORPORATION','OR',3,2) from dual;
+
+'OR'  -> Searching String
+
+3  -> Searching Starting from 3rd Char. onwards ( left -> right )
+
+2  -> No.of times to be search
+
+o/p: 12
+
+Note: Searched string position is counting from 1st char. onwards from LEFT -> RIGHT ( fixed )
+
+
+Example 2 :
+-----------
+
+  Select Instr('ORACLE CORPORATION','OR',3,3) from dual;
+
+'OR'  -> Searching String
+
+3  -> Searching Starting from 3rd Char. onwards ( left -> right )
+
+3  -> No.of times to be search
+
+o/p: 0
+
+
+Example 3 :
+-----------
+
+  Select Instr('ORACLE CORPORATION','OR',3,1) from dual;
+
+'OR'  -> Searching String
+
+3  -> Searching Starting from 3rd Char. onwards ( left -> right )
+
+1  -> No.of times to be search
+
+o/p:  9
+
+
+Example 3 :
+-----------
+
+  Select Instr('ORACLE CORPORATION','OR') from dual;
+
+'OR'  -> Searching String
+
+ 1  -> Searching Starting from 1st Char. onwards(by default ) ( left -> right )
+
+ 1  -> No.of times to be search ( by default )
+
+o/p: 1
+
+SQL> Select Instr('ORACLE CORPORATION','OR') from dual;
+
+INSTR('ORACLECORPORATION','OR')
+-------------------------------
+                              1
+
+SQL> Select Instr('ORACLE CORPORATION','OR',1,1) from dual;
+
+INSTR('ORACLECORPORATION','OR',1,1)
+-----------------------------------
+                                  1
+
+note: by default oracle ( 1, 1 )   
+
+
+Example 5:
+----------
+
+  Select Instr('ORACLE CORPORATION','OR',-1,1) from dual;
+
+'OR'  -> Searching String
+
+-1 -> Searching Starting from 1st char. onwards ( from RIGHT -> LEFT )
+
+1  -> No.of times to be search
+
+o/p:  12
+
+Note: Searched string position is counting from 1st char. onwards from LEFT -> RIGHT ( fixed )
+
+-- WAQ to display which employee names not having 'A' chars
+
+       select ename from emp where instr(ename,'A',1,1)=0;
+
+-- waq to display which employee names 'A' char. contains atleast one time
+
+       select ename from emp where instr(ename,'A',1,1)!=0;
+
+-- waq to display which employee names 'A' char. contains 2nd position
+
+       select ename from emp where instr(ename,'A',1,1)=2;
+
+emp.txt
+-------
+1,king,'ameerpet hyderabad'
+2,scott,'panjagutta hyderabad'
+3,jones,'mareddpally secunderabad'
+4,smith,'srnagar hyderbad'
+
+
+files  ->   oracl db
+
+	   empno    eanme   street     city
+	   1        king    ameerpet   hyderabad
+
+Table creation:
+---------------
+
+Create table emp_db( empno number(4), ename varchar2(10), address varchar2(50) );
+
+Insert into emp_db values( 1,'king','ameerpet hyderabad');
+Insert into emp_db values( 2,'scott','panjagutta hyderabad');
+Insert into emp_db values( 3,'jones','mareddpally secunderabad');
+Insert into emp_db values( 4,'smith','srnagar hyderbad');
+commit;
+
+SQL> select * from emp_db;
+
+ EMPNO ENAME      ADDRESS
+------ ---------- --------------------------------------------------
+     1 king       ameerpet hyderabad
+     2 scott      panjagutta hyderabad
+     3 jones      mareddpally secunderabad
+     4 smith      srnagar hyderbad
+
+  Substr &  Instr  
+
+-- waq to display only STREET names
+
+
+SQL> select substr(address, 1, instr(address,' ',1,1)-1 ) from emp_db;
+
+SUBSTR(ADDRESS,1,INSTR(ADDRESS,'',1,1)-1)
+--------------------------------------------------------------------------------
+ameerpet
+panjagutta
+mareddpally
+srnagar
+
+
+-- waq to display only CITY names
+
+SQL> select substr(address,instr(address,' ',1,1)+1) from emp_db;
+
+SUBSTR(ADDRESS,INSTR(ADDRESS,'',1,1)+1)
+--------------------------------------------------------------------------------
+hyderabad
+hyderabad
+secunderabad
+hyderbad
+
+
+SQL> select substr(address,instr(address,' ',-1,1)+1) from emp_db;
+
+SUBSTR(ADDRESS,INSTR(ADDRESS,'',-1,1)+1)
+--------------------------------------------------------------------------------
+hyderabad
+hyderabad
+secunderabad
+hyderbad
+
+
+iii. DATE FUNCTIONS :
+---------------------
+
+  -> These functions are executes on DATE values
+
+  -> Oracle provides one pre-defined Pseudo column is SYSDATE
+
+SYSDATE :
+---------
+
+  -> it returns current server date and time
+  
+
+        SELECT SYSDATE FROM DUAL;
+
+i. ADD_MONTHS( ):
+-----------------
+
+  -> this function is used to add months to given date
+
+  -> it accepts +  or -
+
+ex:
+---
+
+  Select add_months(sysdate, +2 ) from dual;
+
+
+  Select add_months(sysdate, -1 ) from dual;
+
+
+ii. MONTHS_BETWEEN( ) :
+-----------------------
+
+  -> it returns months between two given dates
+
+       select months_between(sysdate,'10-jan-20') from dual;
+
+iii. NEXT_DAY( ) :
+------------------
+
+  -> It returns comming week of the date
+
+SQL>    select next_day(sysdate, 1 ) from dual;
+
+NEXT_DAY(
+---------
+06-DEC-20
+
+SQL>    select next_day(sysdate, 5 ) from dual;
+
+NEXT_DAY(
+---------
+10-DEC-20      
+
+SQL> select next_day(sysdate, 'sun' ) from dual;
+
+NEXT_DAY(
+---------
+06-DEC-20
+
+SQL> select next_day(sysdate, 'sat' ) from dual;
+
+NEXT_DAY(
+---------
+05-DEC-20
+
+note: by default oracle takes sunday - 1 , monday - 2, .....
+
+iv. LAST_DAY( ) :
+-----------------
+
+   -> It returns last date of the month
+
+SQL>          select last_day(sysdate) from dual;
+
+LAST_DAY(
+---------
+31-DEC-20
+
+
+-- waq to display each employee experience in years
+
+SQL> select empno, round( months_between(sysdate,hiredate)/12) from emp;
+
+ EMPNO ROUND(MONTHS_BETWEEN(SYSDATE,HIREDATE)/12)
+------ ------------------------------------------
+  7369                                         40
+  7499                                         40
+  7521                                         40
+  7566                                         40
+  7654                                         39
+  7698                                         40
+
+
+-- waq to display next month first date
+
+SQL> select last_day(sysdate)+1 from dual;
+
+LAST_DAY(
+---------
+01-JAN-21
+
+-- waq to display current month first date
+
+SQL> select add_months( last_day(sysdate) , -1 ) +1 from dual;
+
+ADD_MONTH
+---------
+01-DEC-20
+
+-- waq to display 2nd and 4th saturday dates
+
+SQL>   select  next_day( add_months( last_day(sysdate),-1 )+7,'sat') from dual;
+
+NEXT_DAY(
+---------
+12-DEC-20
+
+-- waq to display 4th saturday 
+
+SQL>   select  next_day( add_months( last_day(sysdate),-1 )+21,'sat') as "4th_saturday" from dual;
+
+4th_satur
+---------
+26-DEC-20     
+
+
+DATE with Arithmatic :
+----------------------
+
+  select sysdate + 1 from dual;
+
+  select sysdate - 7 from dual;
+
+  select sysdate-hiredate from emp;
+
+II. GROUP FUNCTIONS :
+---------------------
+
+   -> These functions can compare multiple values and return single record output
+
+   -> These functions are also called as AGREEGATE / MULTI-ROW functions
+
+MIN( ) 
+------
+
+   -> This function returns MIN value 
+
+          select min(sal) from emp;
+
+MAX( ) :
+--------
+
+  -> This function returns maximum value 
+
+          select max(sal) from emp;
+
+SUM( ) :
+--------
+
+  -> it returns sum of values
+
+           select sum(sal) from emp;
+
+AVG( ) :
+--------
+
+  -> It returns average value
+
+           select avg(sal) from emp;
+
+COUNT( ) :
+----------
+
+  -> this function counts no.of values / records
+
+SQL> select count(empno) from emp;
+
+COUNT(EMPNO)
+------------
+          14
+            select count(1) from emp;
+
+SQL> select count(comm) from emp;
+
+COUNT(COMM)
+-----------
+          5
+
+
+note: Once pass argument as COLUMN NAME then count function IGNORES NULLs
+
+ -- To display exact no.of records
+
+            select count(*) from emp;
+
+            select count(1) from emp;
+
+            select count(2) from emp;  
+
+OTHER EXAMPLE:
+--------------
+
+TABLE : TABLE_A
+
+COLUMN: COLUMN_1
+
+             12
+              9
+           NULL
+           NULL 
+              0
+              7
+           NULL
+              1
+              8
+              9
+           NULL
+              0
+              1
+
+
+-- what are outputs of the following queries
+
+         select count(column_1) from table_a;
+
+o/p: 9
+
+
+         select count(*) from table_a;
+
+o/p: 13
+
+         select count(distinct(column_1) ) from table_a;
+
+o/p: 6
+ 
+         select distinct( (column_1)) from table_a;
+
+o/p: 6
+
+         select distinct(count(*)) from table_a;
+
+o/p: 13
+
+
+VARIANCE( ) :
+-------------
+
+ -> it returns variance of given values
+
+     select variance(sal) from emp;
+
+Stddev ( ) :
+------------
+
+  -> Sqrt of variance is called as Standard Deviation
+
+        select stddev(sal) from emp;
+
+-- What is the output of the following queries
+
+     select max(100, 200 ) from dual;
+
+     select sum(ename) from emp;
+
+     select min(hiredate) from emp;
+
+     select avg(ename) from emp;
+
+     select max(500) from dual;
+
+III. CONVERSION FUNCTIONS :
+---------------------------
+
+  -> These functions can convert one datatype to another datatype temporarily
+
+  -> Oracle supports 3 types of conversion functions
+
+         i. to_char( )
+
+        ii. to_date( )
+
+       iii. to_number( )
+
+
+i. to_char( ) :
+---------------
+
+   -> this function used to convert DATE / NUMBER values into CHAR format temporarily
+
+  						Or
+
+   -> this function used to convert Oracle pre-defined Date format to User Defined Date Format
+
+  
+07-dec-20    =>   7/12/20,   7th dec, 2020,   12/07/2020
+
+syntax:
+-------
+
+  TO_CHAR(DATE/NUMBER, 'fmt')
+
+Examples:
+---------
+
+SQL>   Select sysdate from dual;
+
+SYSDATE
+---------
+07-DEC-20
+
+
+-- waq to display day of the week
+
+'d'   -> returns day of the week
+
+           select to_char(sysdate, 'd') from dual;
+
+o/p: 2
+
+'dd'  -> returns day of the month
+
+           select to_char(sysdate, 'dd') from dual;
+
+o/p: 07
+
+'ddd'  -> day of the year
+
+           select to_char(sysdate, 'ddd') from dual;
+
+o/p: 342
+  
+'dy'  -> returns first three chars. of the day
+
+           select to_char(sysdate, 'dy') from dual;
+
+o/p: mon
+
+'day'  -> returns fullform of the day
+
+           select to_char(sysdate, 'day') from dual;
+
+o/p: monday
+
+'w'  -> week of the month
+
+           select to_char(sysdate, 'w') from dual;
+
+o/p: 1
+
+
+'ww' -> returns week of the year
+
+          
+           select to_char(sysdate, 'ww') from dual;
+
+o/p: 49
+      
+'mm' -> returns month in numaric format
+
+           select to_char(sysdate, 'mm') from dual;
+
+o/p: 12
+
+'mon' -> returns first three chars. of the month
+
+           select to_char(sysdate, 'mm') from dual;
+
+o/p: dec
+
+'month'   - returns fullform of the month
+
+           select to_char(sysdate, 'month') from dual;
+
+o/p: december
+
+'y'  -> returns last digit of the year 
+
+o/p: 0
+
+'yy'  -> returns last two digits of the year
+
+o/p: 20
+
+'yyy'  -> returns last three digits of the year
+
+o/p:020
+
+'yyyy'  -> returns year in numaric format
+
+  select to_char(sysdate,'yyyy') from dual;
+
+o/p:2020
+
+'year'  -> returns year in char. format
+
+
+  select to_char(sysdate,'year') from dual;
+
+o/p: twenty twenty
+
+'hh:mi:ss a.m.' or 'hh12:mi:ss'   -> return hours in 12hrs. base 
+
+   select to_char(sysdate,'hh12:mi:ss a.m.') from dual;
+
+o/p: 09:09:51 a.m.
+
+
+'hh24:mi:ss'  -> hours in 24hrs base, minutes and seconds
+
+   select to_char(sysdate,'hh24:mi:ss') from dual;
+
+o/p: 09:09:51
+
+'cc'  -> returns current century
+
+   select to_char(sysdate,'cc') from dual;
+
+o/p: 21
+
+'ddsp'  -> returns day of the month in spelled format
+
+   select to_char(sysdate,'ddsp') from dual;
+
+o/p: seven
+
+'ddth'  -> returns day of the month in following formats...
+
+       ex: 01st, 02nd,  03rd,  04th, etc.,
+
+'q'  -> returns quarter of the year
+
+
+    select to_char(sysdate,'q') from dual;
+
+o/p: 4
+
+'j'  -> returns date in julian format ( returns no.of days from oracle starting date to tilldate)
+
+        select to_char(sysdate, 'j' ) from dual;
+
+o/p: 2459191
+
+note: oracle starting date is '01-jan-4712 b.c'
+   
+
+Examples:
+---------
+
+   -- waq to display system date in the following formats...
+
+  i.  07/12/2020
+
+ ii. 7th dec, 2020
+
+       select to_char(sysdate, 'dd/mm/yyyy') from dual;
+
+       select to_char(sysdate, 'ddth mon, yyyy' ) from dual;
+
+-- waq to display employee date of joinings in the follwing format dd/mm/yyyy
+
+       select empno, to_char(hiredate,'dd/mm/yyyy') from emp;
+
+-- waq to display who joined in 81 year
+
+       select * from emp where to_char(hiredate,'yy')=81;
+
+-- waq to display who are joined in last month
+
+     select * from emp where to_char(hiredate,'mm-yyyy') = to_char(add_months(sysdate,-1),'mm-yyyy');
+
+
+-- waq to display who are joined in current month till date
+
+      select * from emp where to_char(hiredate,'mm-yyyy') = to_char( sysdate,'mm-yyyy');
+
+-- waq to display who are joined in the last week
+
+      select * from emp where to_char(hiredate,'ww') = to_char(sysdate,'ww')-1 and
+				         to_char(hiredate,'yyyy')=to_char(sysdate,'yyyy');
+
+
+-- waq to find each employee howmuch they earned upto till last month
+
+    select sal * months_between(  add_months( last_day(sysdate),-1 ),hiredate ) from emp
+					where  hiredate <= add_months( last_day(sysdate),-1 );
+
+To Convert NUMBER to CHAR :
+---------------------------
+
+  -- waq to display employee salaries in the following format.
+
+        5,000.00
+        3,000.00
+        .
+        .
+
+   select  empno, to_char(sal, '9,999.99') from emp;
+
+NUMBER FORMATS :
+----------------
+
+  'C'  ->  returns local currancy name
+
+         select to_char(1234,'c9,999.99') from dual;
+
+  'L'  -> returns local currancy symbol
+
+         select to_char(1234,'l9,999.99') from dual;
+    
+ 's'  -> returns sign symbol
+
+         select to_char(1234,'s9,999.99') from dual;
+
+To change currancy from one country to another county temporarily :
+---------------------------------------------------------------------
+
+  Alter Session Set nls_territory='INDIA';
+
+SQL>   Alter Session Set nls_territory='INDIA';
+
+Session altered.
+
+SQL>          select to_char(1234,'c9,999.99') from dual;
+
+TO_CHAR(1234,'C9
+----------------
+     INR1,234.00
+
+SQL>          select to_char(1234,'L9,999.99') from dual;
+
+TO_CHAR(1234,'L9,99
+-------------------
+         Rs1,234.00
+
+
+ii. TO_DATE( ) :
+----------------
+
+   -> This function used to convert user defined date format into oracle pre-defined date format
+
+insert into employ values (1001, 'king', '08/12/20', 5000, 10 )
+
+doj date;    '08-dec-20'
+
+   ** to convert 08/12/20 to 08-dec-20
+
+           select to_date('08/12/20', 'dd/mm/yy') from dual;
+
+other example:
+--------------
+  
+Table creation:
+---------------
+
+sql>   Create table employ(empno number(4), doj date );
+  
+SQL>    Insert into employ values ( 1001, to_date( '08/12/20','dd/mm/yy') ) ;
+
+1 row created.
+
+SQL> select * from employ;
+
+     EMPNO DOJ
+---------- ---------
+      1001 08-DEC-20
+
+SQL>    Insert into employ values ( 1001, to_date( '11/25/20','mm/dd/yy') ) ;
+
+1 row created.
+
+SQL> select * from employ;
+
+     EMPNO DOJ
+---------- ---------
+      1001 08-DEC-20
+      1001 25-NOV-20
+
+
+Example for nested function :
+-----------------------------
+
+  -- waq to display DAY of INDEPENDANCE DAY
+
+           '15/08/1947'
+
+SQL> Select to_char( to_date( '15/08/1947', 'dd/mm/yyyy') , 'day' ) from dual;
+
+TO_CHAR(T
+---------
+friday
+
+
+iii. TO_NUMBER( ) :
+-------------------
+
+  -> This function used to convert CHAR. Number values into NUMBER format temporarily
+
+Example:
+---------  
+
+   1,234.56  +  789.89 
+
+     select 1,234.56  +  789.89 from dual;
+
+SQL> select to_number( '1,234.56','9,999.99')   +  789.89 from dual;
+
+TO_NUMBER('1,234.56','9,999.99')+789.89
+---------------------------------------
+                                2024.45
+
+
+** To insert date from FRONT END to BACKEND then to use TO_DATE( ) Function
+
+      08/12/2020    ->     to_date( )    ->    08-dec-20    
+
+** To display date from BACKEND to FRONTEND then to use TO_CHAR( ) Function
+
+       08-dec-20  ->     to_char( )    ->    08/12/20
+
+
+Implicit Conversions :
+----------------------
+
+   -> Oracle automatically converts one datatype to another datatype temporarily
+
+ex:
+---
+
+  select '123' + '789' from dual;
+
+  select to_date('09-dec-20') + 1 from dual;
+
+  select to_date('09/12/2020','dd/mm/yyyy') + 1 from dual;
+
+   
+i.q :
+-----
+ 
+  -- what is output of the following query
+
+         select '09-dec-20' + 1 from dual;
+
+
+IV. GENERAL FUNCTIONS :
+-----------------------
+
+  -> these functions are supports different datatypes
+
+GREATEST(arg1, arg2,...) :
+---------------------------
+
+   -> this function returns greatest value from given list of values
+
+          select greatest( 10, 20, 30, 40 ) from dual;
+
+LEAST(arg1, arg2, ... ) :
+-------------------------
+
+   -> it returns least value from given list of values
+
+       select least('d','cd','bcd','abcd') from dual;
+
+o/p: abcd
+
+UID :
+------
+
+ -> It returns user identification number
+
+       select uid from dual;
+
+USER :
+------
+
+  -> It returns presently connected user name
+
+         select user from dual;
+
+DISTINCT( ) :
+-------------
+
+  -> this function used to eliminates duplicate values
+
+        select distinct(deptno) from emp;
+
+        select distinct(job) from emp;
+
+NVL( Expr1, Expr2 ) :
+---------------------
+
+  -> This function used to perform arithmatic operations by using NULLs
+
+        select 100 + null, 200*null, 400 + 10 + Null from dual;
+
+  -> if Expr1 value is NULL then it evaluates Expr2 otherwise Expr1 Output
+
+Example:
+--------
+
+    Select Nvl( 100, 200 ), nvl(null, 200 ) from dual;
+
+ -- waq to display each employee net salary ( sal + comm )
+
+     Select empno, ename, sal, comm, sal + comm, deptno from emp;
+
+     select empno, ename, sal, nvl(comm,0), sal + nvl( comm, 0 ) , deptno from emp;
+        
+SOUNDEX( ) :
+------------
+
+   -> this function used to compare the values based on given pronounsation
+
+          select * from emp where ename='smith';
+
+SQL>           select * from emp where ename='smith';
+
+no rows selected
+
+SQL>           select * from emp where ename='archana';
+
+no rows selected
+
+SQL>           select * from emp where ename='ARCHNA';
+
+no rows selected
+
+
+SQL> Select * from emp where soundex(ename)=soundex('aaaaaaaaaaarchana');
+
+ EMPNO ENAME           JOB          MGR HIREDATE     SAL   COMM DEPTNO
+------ --------------- --------- ------ --------- ------ ------ ------
+  7369 ARCHANA         CLERK       7902 17-DEC-80    800            20
+
+SQL> Select * from emp where soundex(ename)=soundex('archan');
+
+ EMPNO ENAME           JOB          MGR HIREDATE     SAL   COMM DEPTNO
+------ --------------- --------- ------ --------- ------ ------ ------
+  7369 ARCHANA         CLERK       7902 17-DEC-80    800            20
+
+Syntax of SELECT statement :
+----------------------------
+
+   select * / column_list from <table_name> [ WHERE clause /
+					      GROUP BY clause /
+					      HAVING Clause /
+					      ORDER BY Clause ];
+
+GROUP BY Clause :
+-----------------
+
+ -> this clause is used to group the rows on specified columns
+
+ -> Group by cluase is used to convert Ordinary columns into Grouped Columns
+
+ -> Whenever an Ordinary column is Retrieved along with Group function / Arregate function then All     Oridinary column should be placed after group by clause.
+
+-- waq to display DEPT. wise Sum of salaries
+
+SQL> SELECT DEPTNO, SUM(SAL) FROM EMP GROUP BY DEPTNO;
+
+DEPTNO SUM(SAL)
+------ --------
+    30     9400
+    20     8075
+    10    13150
+
+
+ -- Waq to display In Each Job min and max. salaries
+
+SQL> SELECT JOB, MIN(SAL), MAX(SAL) FROM EMP GROUP BY JOB;
+
+JOB       MIN(SAL) MAX(SAL)
+--------- -------- --------
+CLERK          800     1400
+SALESMAN      1250     1600
+PRESIDENT     5100     5100
+MANAGER       2550     2975
+ANALYST       3200     3200
+manager       4100     4100
+
+6 rows selected. 
+       
+
+-- WAQ To display in each dept. howmany employees are working
+
+SQL>  Select Deptno, Count(*) as No_of_Emps from Emp Group by Deptno;
+
+DEPTNO NO_OF_EMPS
+------ ----------
+    30          6
+    20          4
+    10          4
+
+column alaise :
+---------------
+
+   -> Aliase name is given to next to column name is called as column alaise
+
+-- waq to display in each year howmany employee are joined
+
+1980	1
+1981	9
+1982	2
+.
+.
+
+SQL> SELECT TO_CHAR(HIREDATE,'YYYY')  , COUNT(*) AS NO_EMPS_JOINED FROM EMP GROUP BY TO_CHAR(HIREDATE,'YYYY')
+  2                                                ORDER BY TO_CHAR(HIREDATE,'YYYY');
+
+TO_C NO_EMPS_JOINED
+---- --------------
+1980              1
+1981              9
+1982              1
+1983              1
+2020              2    	
+
+HAVING CLAUSE / HAVING <condition> :
+------------------------------------
+
+  -> this clause is used to check Grouped column values / Group Function Results
+
+  -> Having clause is valid after group by clause
+
+Examples:
+----------
+
+  -- waq to display in which dept. morethan 4 employees are working
+
+SQL>           select deptno, count(*) from emp group by deptno having Count(*) > 4;
+
+DEPTNO COUNT(*)
+------ --------
+    30        6
+     
+   
+  -- waq to display in which job min salary > 2000
+
+        select job , min(sal) from emp group by job having min(sal) > 2000;
+
+
+WHERE Clause :
+---------------
+
+  -> WHERE used to check ORDINARY column values
+
+  -> It is valid BEFORE GROUP BY clause
+
+example:
+--------
+
+  select * from emp where deptno=10;
+
+  select * from emp where job='CLERK';
+
+ORDER BY CLAUSE :
+-----------------
+
+   -> this clause used to displays information either ascending or decending order
+
+   -> By default ORDER BY clause displays ASCENDING order
+
+   -> ORDER BY clause supports maximum 32 columns
+
+   -> only SELECT statement supports ORDER BY Clause
+
+   -> ORDER BY clause must be placed at the end of SELECT statement
+
+Examples:
+---------
+
+  select * from emp order by deptno asc;
+
+  select * from emp order by deptno;
+  
+  select * from emp order by deptno desc;
+
+  select * from emp order by ename;
+
+  select * from emp order by deptno, ename;
+
+i.q :
+-----
+
+   select * from emp order by 3;
+
+CONSTRAINTS :
+-------------
+
+  -> Constraint is a RULE / Condition and that rule is applied on DB Columns at the time of Table      Creation or After Table Creation
+ 
+  -> Constraints are activated whenever DML commands Performed
+
+  -> Constraints are also activated when the TABLEs are manipulated by OTHER USERS or by OTHER      APPLICATION software tools
+
+  -> Constraints are used to Restrict User Defined Conditions or Business Rules
+
+  -> All Created Constraint Names are Stored in USER_CONSTRAINTS( system table )
+
+TYPES OF CONSTRAINTS :
+----------------------
+
+
+I. NOT NULL Constraint
+
+II. UNIQUE Constraint
+
+III. CHECK Constraint
+
+IV. DEFAULT Constraint
+
+V. PRIMARY KEY Constraint
+
+VI. FOREIGN KEY (REFERENCES ) Constraint
+
+   
+   -> To Add Constraint to morethan one column is called as Composite Constraint
+
+                   EX: UNIQUE(PID, CID )
+
+   -> In Composite Constraints Maximum 32 columns are Supported
+
+   -> All Composite Constraints are supported in TABLE LEVEL / ALTER LEVEL only
+
+   -> if Table contains PRIMARY KEY constraints that table is called as MASTER TABLE/PARENT TABLE /       INDEPENDENT TABLE
+
+   -> if Table contains FOREIGN KEY constraints that table is called as DETAILED TABLE/CHILD TABLE /       DEPENDENT TABLE
+
+   -> we can't delete PARENT RECORD if any CHILD RECORDS are FOUND
+
+   -> Constraints are not supported if any Column Datatype contains LOB, BLOB, CLOB, RAW, LONG RAW,       BFILE,LONG, etc., 
+
+   -> Only NOT NULL Constraint supported UN-STRUCTURED Datatypes( ex: LOB, BLOB, CLOB, RAW, etc., )
+
+** Constraints added to DB Columns there are 3 methods 
+
+i. column level constraints
+
+ii. table level constraints
+
+iii. alter level constraints
+
+
+i. column level constraints :
+-----------------------------
+
+   -> Constraint added to next to column name at the time of table creation is called as Column Level       Constraints
+
+syntax:
+-------
+
+   Create table <table_name> ( col1 datatype(size)
+				[constraint <constraint_name>] <constraint_type>, 
+			       col2 datatype(size)
+				constraint <constraint_name> <constraint_type>,
+			       .
+                               .
+			       col_n datatype(size)
+                             );
+
+ii. table level constraints :
+-----------------------------
+
+  -> Constraints are added after declaring all columns at the time of table creation is called as      table level constraints.
+
+syntax:
+-------
+ 
+  Create table <table_name> ( col1 datatype(size),
+			      col2 datatype(size),
+			      .
+			      .
+		              col_n datatype(size),
+                                [Constraint <constraint_name>] <constraint_type>( col1 [, col2,...] )
+			    );
+
+iii. ALTER LEVEL constraints :
+------------------------------
+
+  -> After Table creation to add constraints to db columns is called as ALTER LEVEL constraints
+
+syntax:
+-------
+
+  Alter Table <table_name> ADD / MODIFY 
+			[Constraint <constraint_name>] <constraint_type> ( col1 [ , col2,...col_n] );
+
+I. NOT NULL Constraint :
+------------------------
+
+   -> By Default all db columns are accepts NULLs
+
+   -> To Restrict NULLs on DB Columns then NOT NULL Constraint is supported
+
+   -> It is a column level Constraint
+
+   -> NOT NULL constraint accepts 'n' no.of duplicates
+
+   -> NOT NULL constraint supported if any column contains UN-STRUCTURED Datatypes
+
+   -> if any COLUMN Value is mandatory on that columns we can ADD NOT NULL constraint
+
+ 
+
+ mandatory columns
+
+empid(not null)
+
+Testing:
+---------
+
+ Create table employ(empid number(10)
+			 Constraint Employ_Empid_NN  NOT NULL,
+                     ename varchar2(10),  
+                     sal Number(8,2), 
+                     deptno number(2) );
+
+ 
+  insert into employ values( 1, 'king', 5000, 10 );
+  insert into employ values( 2, 'scott', NULL, 20 );
+  insert into employ values( null, 'SMITH', 4000, 20 );  -- error
+  insert into employ values( 2, 'allen', 4000, 30 );  -- accepted
+ 
+SQL> SELECT * FROM EMPLOY;
+
+ EMPID ENAME         SAL DEPTNO
+------ ---------- ------ ------
+     1 king         5000     10
+     2 scott                 20
+     2 allen        4000     30
+
+II. UNIQUE Constraint :
+-----------------------
+
+    -> By default all db columns are accepted duplicates so, to avoid duplicate values then UNIQUE        Constraint is supported
+
+    -> this constraint avoids duplicate values
+
+    -> UNIQUE Constraint is supported in 3 levels
+
+    -> UNIQUE Constraint accepts 'n' no.of NULLs
+
+    -> Unique constraint is not supported Un-structured Datatypes
+
+    -> maximum each and every table contains one key column on that column we can UNIQUE constraint
+
+Example:
+--------
+
+   -- create a student db table with student id, student name & class
+
+validations:
+------------
+
+   -> student id  should not be allow duplicate values
+
+Table creation:
+---------------
+
+   Create table stud_db( stud_id Number(10)
+                            constraint stud_db_stud_id_un Unique,
+                         stud_name varchar2(10),
+                         class varchar2(10)
+			);
+
+Testing :
+----------
+ 
+ Insert into stud_db values( 1, 'anand', 'xi' );
+ Insert into stud_db values( 2, 'chandu','xii');
+ Insert into stud_db values( 3, 'abhi','xi');
+ Insert into stud_db values( 3, 'raju', 'xi');
+
+SQL>  Insert into stud_db values( 3, 'abhi','xi');
+
+1 row created.
+
+SQL> select * from stud_db;
+
+STUD_ID STUD_NAME  CLASS
+------- ---------- ----------
+      1 anand      xi
+      2 chandu     xii
+      3 abhi       xi
+
+SQL>  Insert into stud_db values( 3, 'raju', 'xi');
+ Insert into stud_db values( 3, 'raju', 'xi')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (ORA7AM.STUD_DB_STUD_ID_UN) violated
+
+** How to add two constraints on Single Column :
+------------------------------------------------
+
+  -- create a  customer db table with customer id , cust name & mobileno
+
+validations:
+------------
+
+  -> customer id is madatory
+
+  -> Customer id should not be allow duplicates
+
+  -> Mobileno should be accept unique values
+
+Table creation:
+---------------
+
+ Create table cust_db( cust_id number(10)
+			  constraint cust_db_cust_id_nn Not Null
+			  constraint cust_db_cust_id_un Unique,
+		       cust_name varchar2(15),
+		       mobileno Number(10)
+		     );
+
+
+				or
+
+Create table cust_db( cust_id number(10)
+			  constraint cust_db_cust_id_nn_un Not Null Unique,
+ 		       cust_name varchar2(15),
+		       mobileno Number(10)
+		     );
+
+
+III. CHECK Constraint :
+-----------------------
+
+   -> this constraint used to check the given condition
+
+   -> if given check condition becomes TRUE then record is inserted otherwise it returns Error message
+
+Examples:
+---------
+
+  -> Create a employ db table with employee id, employee name, salary and Deptno
+
+Validations:
+------------
+
+   -> Employee Salary should be >= 3000
+
+Table creation:
+---------------
+
+  Create table employ(empid number(10),
+		      ename varchar2(10),
+		      sal number(8,2)
+			constraint employ_sal_chk CHECK ( SAL >=3000 ),
+		      deptno number(2)
+	             );
+
+SQL> insert into employ values(1,'king',5000,10);
+
+1 row created.
+
+SQL> insert into employ values(2,'scott',4000,20);
+
+1 row created.
+
+SQL> insert into employ values(3,'smith',2500,20);
+insert into employ values(3,'smith',2500,20)
+*
+ERROR at line 1:
+ORA-02290: check constraint (ORA7AM.EMPLOY_SAL_CHK) violated
+
+
+other examples:
+---------------
+
+Validation:
+-----------
+
+   -> status shouldbe accepts 'y' or 'n'
+
+         status varchar2(1) check ( status = 'y' or  status='n' )
+
+   -> Account type accepts either 's' or 'c'
+
+         acc_type varchar2(1) check ( acc_type in ('s','c') )
+
+   -> Mobileno should be accepts only 10 digits
+
+         Mobileno Number(10) check ( Length(mobileno) = 10 ) 
+ 
+   -> Trans. Amount should be multiples of Hundreds
+
+         TAmount Number(8,2) check ( Mod( tamount,100) = 0 )
+
+IV. DEFAULT Constraint :
+------------------------
+
+   -> this constraint used to take speicified default value
+
+Example:
+--------
+
+  -- create a employee table with employee id, employee name, doj and salary
+
+validations:
+------------
+
+   -> employee date of joining is system date
+
+Table creation:
+---------------
+
+  Create table employ( Empid varchar2(10),
+		       ename varchar2(10),
+		       doj date default sysdate,
+	               sal number(8,2)
+		     );
+
+ 
+SQL> INSERT INTO EMPLOY VALUES( 'E1', 'KING', 5000 );
+INSERT INTO EMPLOY VALUES( 'E1', 'KING', 5000 )
+            *
+ERROR at line 1:
+ORA-00947: not enough values
+
+
+SQL> INSERT INTO EMPLOY VALUES( 'E1', 'KING', DEFAULT, 5000 );
+
+1 row created.
+
+SQL> INSERT INTO EMPLOY(EMPID, ENAME,SAL) VALUES('E2','SCOTT',4000);
+
+1 row created.
+
+SQL> INSERT INTO EMPLOY VALUES( 'E1', 'KING', '10-DEC-20', 5000 );
+
+1 row created.
+
+SQL> SELECT * FROM EMPLOY;
+
+EMPID      ENAME      DOJ          SAL
+---------- ---------- --------- ------
+E1         KING       11-DEC-20   5000
+E2         SCOTT      11-DEC-20   4000
+E1         KING       10-DEC-20   5000
+
+V.PRIMARY KEY Constraint ( UNIQUE + NOT NULL + INDEX ) :
+--------------------------------------------------------
+
+ -> Primary Key is one of ORACLE PRE-DEFINED RULE 
+
+ -> Primary key constraint is combination of UNIQUE , NOT NULL & INDEX
+
+ -> Primary key constraint is not supported NULLs
+ 
+ -> It avoids Duplicates
+
+ -> By using PRIMARY KEY constriant it improves the performance while retrieving or manipulating data     because in primary key constraint IMPLICIT INDEXED is added 
+
+ -> Primary key constraint is supported in 3 LEVELs, but in COLUMN LEVEL only ONE COLUMN Supports         PRIMARY KEY Constraint
+
+ -> To Add Primary Key constraint to morethan one column is called as Composite Primary Key constraint
+
+ -> In Composite Primary key constraints maximum 32 columns are supported
+
+ -> Composite Primary Key constraint is supported in TABLE LEVEL / ALTER LEVEL only
+
+ -> if table contains Primary key constraint that table is called as MASTER TABLE / PARENT TABLE /
+    INDEPENDENT TABLE
+
+ -> We can't delete PARENT record if any CHILD records are found
+
+ -> PRIMARY KEY constraint is not supported if any column contains UN-STRUCTURED DATATYPES
+
+ 
+Example :
+---------
+
+  ** Create Dept. table with Dept id, Dept. Name & Location
+
+Validations:
+------------
+
+   -> Dept. id is mandatory
+
+   -> Dept. id should not be allow duplicates
+
+Table Creation:
+---------------
+
+ Create table depart_mas( Deptid number(4)
+			 	Constraint Depart_mas_Deptid_pk primary key,
+			Dname varchar2(10),
+			Loc varchar2(10)
+		      );
+
+Testing :
+---------
+
+ Insert into depart_mas values( 10, 'Acc', 'Hyd' );
+ Insert into depart_mas values( 20, 'Res', 'Sec' );
+ Insert into depart_mas values( 30, 'Fin', 'Chennai' );
+ Insert into depart_mas values( 40, 'Admin', 'Banglore' );
+
+SQL> select * from depart_mas;
+
+DEPTID DNAME      LOC
+------ ---------- ----------
+    10 Acc        Hyd
+    20 Res	  Sec
+    30 Fin        Chennai
+    40 Admin      Banglore
+    50 Maths	  Hyd
+
+SQL> Insert into depart_mas values( 40, 'Acc', 'Hyd' );
+Insert into depart_mas values( 40, 'Acc', 'Hyd' )
+*
+ERROR at line 1:
+ORA-00001: unique constraint (ORA7AM.DEPART_MAS_DEPTID_PK) violated
+
+SQL> Insert into depart_mas values( null, 'Acc', 'Hyd' );
+Insert into depart_mas values( null, 'Acc', 'Hyd' )
+                               *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("ORA7AM"."DEPART_MAS"."DEPTID")
+
+employ
+------
+
+empid	ename	sal	deptid(fk )
+-----	-----	----	-------
+1001	king	5000	10
+1004    jones   3900	10
+1002	scott	4000	20 -- ERROR
+1003	smith	4000	20      -- ACCEPTED
+
+			
+VI. FOREIGN KEY Constraint :
+----------------------------
+
+  -> This constraint is used to establish relationship between two tables of columns or same table of      columns
+ 
+  -> This constraint is added to other table(Referenced table)  column(Referenced column) contains          either primary key or UNIQUE constraint
+
+  -> In column level on no.of columns FOREIGN KEY Constraint is supported
+
+  -> Foreign key constraint supported in THREE levels
+
+  -> To Add Foreign key constraint on morethan one column is called as Composite Foreign key           constraint
+
+  -> In Composite Foreign key constraint maximum 32 columns are supported
+
+  -> Composite Foreign key constraint is supported In TABLE LEVEL / ALTER LEVEL
+
+  -> if table contains FOREIGN KEY Constraints that table is called as DETAILS TABLE / CHILD TABLE /      DEPENDENT TABLE
+ 
+  -> Foreign key constraint is accepts 'n' no.of duplicates and NULLs
+
+  -> Foreign key constraint is not supported on Un-structured Datatypes
+
+  -> We can delete CHILD records if any PARENT RECORDS ARE FOUND
+
+Example :
+---------
+
+  -- Create a employee table with employ id, employ name, salary & deptno
+
+validations :
+-------------
+
+  -> Inserting Employee Deptid should be available in Dept master table
+
+Table creation:
+---------------
+
+ Create table emp_db( empid number(10),
+                      ename varchar2(10),
+		      sal number(8,2),
+		      deptid number(2)
+			 constraint emp_db_deptid_fk REFERENCES Depart_mas(Deptid)
+		    );
+
+Testing :
+---------
+
+  Insert into emp_db values( 1001, 'king', 5000, 10 );
+
+  Insert into emp_db values( 1002, 'scott', 4000, 20 );
+ 
+  Insert into emp_db values( 1003, 'smith', 2500, 10 );     -- Duplicates are accepted
+  
+  Insert into emp_db values( 1004, 'miller', 800, NULL );   -- NULLs are accepted
+  
+  Insert into emp_db values( 1005, 'ward', 1600, 70 );      -- returns error
+
+  SQL> select * from emp_db;
+
+ EMPID ENAME         SAL DEPTID
+------ ---------- ------ ------
+  1001 king         5000     10
+  1002 scott        4000     20
+  1003 smith        2500     10
+  1004 miller        800
+  
+Example 2 :
+-----------
+
+  -> create a course master table with course id, course name, duration
+
+validations:
+-------------
+
+   -> course id should be unique and it should not be allow NULLs
+
+   -> Minimum coursr duration is 30days.
+
+-> Create fee master table with course id and fee
+
+validations:
+------------
+
+  -> course id should be available in the institute
+
+  -> Minimum course fee rs.2500
+
+-> Create a student master table with Receipt No, Student name,course id,  Doj,  fee and remarks
+
+Validations :
+-------------
+
+  -> Receiptno is mandatory and it should be unique
+
+  -> student joining course id should be available in the institute
+
+  -> Date of joing is system date
+
+  -> minimum reg. fee rs.100
+
+course_master table :
+---------------------
+
+ Create table course_mas( course_id varchar2(10)
+				constraint course_mas_course_id_pk Primary key,
+			  course_name varchar2(20),
+		          duration number(4) 
+				constraint course_mas_duration_chk CHECK ( Duration >=30 )
+			);
+
+Fee master table :
+------------------
+
+  Create table fee_mas( course_id varchar2(10)
+			     constraint fee_mas_course_id_fk REFERENCES course_mas(course_id),
+		        fee number(8,2)
+			     constraint fee_mas_fee_chk CHECK ( FEE >=2500)
+		      );
+
+Student master table :
+----------------------
+
+  Create table stud_mas( Receipt_No number(4)
+				constraint stud_mas_rno_pk PRIMARY KEY,
+			 Student_Name varchar2(20),
+			 Course_id varchar2(10)
+				constraint stud_mas_course_id_fk REFERENCES Course_mas(course_id),
+			 Doj Date,
+			 Fee number(8,2)
+				Constraint stud_mas_fee_chk CHECK ( FEE >=100),
+			 Remarks varchar2(30)
+			);
+
+Library Management :
+--------------------
+
+Book_mas : Book_id(pk)	Book_name	Author_name
+
+stud_mas : Stud_id(pk)	Std_name	Class
+
+Stock :	   Book_id(fk)	Avail_Stock
+
+Book_issue : Tno(pk)	stud_id(fk)	Class		Book_id(fk)	Doi	    Doj	      remarks 
+
+
+BANK MANAGEMENT SYSTEM :
+------------------------
+
+Bank_mas : Accno(pk),	Cust_name,	Address,	Odate,      Acc_type,     Balance	
+
+
+Bank_Trans : Tno,	Accno(fk),	Tdate		Ttype		Tamount
+
+
+SELF REFERENCE  or SELF FOREIGN KEY :
+-------------------------------------
+
+  -> Foreign key constraint is Referenced wiht Same table of Primary Key constraint is called as SELF      REFERENCE.
+
+  -> i.e., PARIMARY KEY & FOREIGN KEY Constraints are avaiable in the same table
+
+Example:
+--------
+
+ -> Create a employee master table with employee No, Employee Name, Boss Id, Sal and Deptno
+
+Validations:
+------------
+ 
+  -> Employee id is mandatory and it should be unique
+
+  -> Employee Boss id Should be matched with Employee id
+
+EMPLOY
+------
+
+EMPID(pk)	ENAME		BOSS_ID(fk)	SAL		DEPTNO
+1001		KING		NULL		5000		10
+1002		JONES		1001		4000		20
+1003		SCOTT		1001
+1004		SMITH		1002
+1005		WARD	 	1008					-- returns error
+
+
+Table creation:
+---------------
+
+  Create table Employ( Empid Number(10)
+			constraint employ_empid_pk PRIMARY KEY,
+		       Ename varchar2(10),
+		       Boss_Id Number(10)
+			constraint employ_boss_id_self_fk REFERENCES Employ(Empid),
+		       Sal Number(8,2),
+		       Deptno Number(2)
+		    );
+
+
+ON DELETE CASCADE :
+-------------------
+
+   -> This option is used to whenever parent record is deleted then corresponding child records are       deleted automatically.
+
+   -> This option will be added at the time of FOREIGN KEY CONSTRAINT Declaration
+
+Example:
+--------    
+
+Table Creation:
+---------------
+
+PRIMARY KEY TABLE :
+-------------------
+
+ Create table depart_mas( Deptid number(4)
+			 	Constraint Depart_mas_Deptid_pk primary key,
+			Dname varchar2(10),
+			Loc varchar2(10)
+		      );
+
+FOREIGN KEY TABLE :
+-------------------
+
+ Create table emp_db( empid number(10),
+                      ename varchar2(10),
+		      sal number(8,2),
+		      deptid number(2)
+			 constraint emp_db_deptid_fk REFERENCES Depart_mas(Deptid)
+									ON DELETE CASCADE
+		    );
+
+
+Testing :
+---------
+
+ Insert into depart_mas values( 10, 'Acc', 'Hyd' );
+ Insert into depart_mas values( 20, 'Res', 'Sec' );
+ Insert into depart_mas values( 30, 'Fin', 'Chennai' );
+ Insert into depart_mas values( 40, 'Admin', 'Banglore' );
+
+SQL> select * from depart_mas;
+
+DEPTID DNAME      LOC
+------ ---------- ----------
+    10 Acc        Hyd
+    20 Res	  Sec    
+    30 Fin        Chennai
+    40 Admin      Banglore
+ 
+
+
+sql>  Insert into emp_db values( 1001, 'king', 5000, 10 );
+sql>  Insert into emp_db values( 1002, 'scott', 4000, 20 );
+sql>  Insert into emp_db values( 1003, 'smith', 2500, 10 );
+sql>  Insert into emp_db values( 1004, 'ward', 800, 20 );
+sql>  Insert into emp_db values( 1005, 'miller', 2400, 30 );
+ 
+SQL> select * from emp_db;
+
+ EMPID ENAME         SAL DEPTID
+------ ---------- ------ ------
+  1001 king         5000     10
+  1002 scott        4000     20
+  1003 smith        2500     10
+  1004 ward          800     20
+  1005 miller       2400     30
+
+Check On DELETE Cascade option:
+-------------------------------
+
+SQL> Delete from depart_mas where deptno=20;
+
+sql> select * from depart_mas;
+
+sql> select * from Emp_db;
+
+  
+ii. ON DELETE SET NULL :
+------------------------
+
+  -> This option is used to whenever PARENT RECORD deleted then Corresponding CHILD RECORD column           values set to NULLs
+
+  -> this option also will be added at the time of FOREIGN KEY declaration
+
+note: same steps followed by above ON DELETE CASCADE Option
+
+
+Example:
+--------    
+
+Table Creation:
+---------------
+
+PRIMARY KEY TABLE :
+-------------------
+
+ Create table depart_mas( Deptid number(4)
+			 	Constraint Depart_mas_Deptid_pk primary key,
+			Dname varchar2(10),
+			Loc varchar2(10)
+		      );
+
+FOREIGN KEY TABLE :
+-------------------
+
+ Create table emp_db( empid number(10),
+                      ename varchar2(10),
+		      sal number(8,2),
+		      deptid number(2)
+			 constraint emp_db_deptid_fk REFERENCES Depart_mas(Deptid)
+									ON DELETE SET NULL
+		    );
+
+
+Testing :
+---------
+
+ Insert into depart_mas values( 10, 'Acc', 'Hyd' );
+ Insert into depart_mas values( 20, 'Res', 'Sec' );
+ Insert into depart_mas values( 30, 'Fin', 'Chennai' );
+ Insert into depart_mas values( 40, 'Admin', 'Banglore' );
+
+SQL> select * from depart_mas;
+
+DEPTID DNAME      LOC
+------ ---------- ----------
+    10 Acc        Hyd
+    20 Res	  Sec    
+    30 Fin        Chennai
+    40 Admin      Banglore
+ 
+
+
+sql>  Insert into emp_db values( 1001, 'king', 5000, 10 );
+sql>  Insert into emp_db values( 1002, 'scott', 4000, 20 );
+sql>  Insert into emp_db values( 1003, 'smith', 2500, 10 );
+sql>  Insert into emp_db values( 1004, 'ward', 800, 20 );
+sql>  Insert into emp_db values( 1005, 'miller', 2400, 30 );
+ 
+SQL> select * from emp_db;
+
+ EMPID ENAME         SAL DEPTID
+------ ---------- ------ ------
+  1001 king         5000     10
+  1002 scott        4000     20
+  1003 smith        2500     10
+  1004 ward          800     20
+  1005 miller       2400     30
+
+Check On DELETE Cascade option:
+-------------------------------
+
+SQL> Delete from depart_mas where deptno=10;
+
+sql> select * from depart_mas;
+
+sql> select * from Emp_db;
+
+
+COMPOSITE CONSTRAINTS :
+-----------------------
+
+   -> Constraint is added to morethan one column is called as composite constraints
+
+   -> In Composite Constraints maximum 32 columns are supported
+   
+   -> All Composite constraints are supported in TABLE LEVEL or ALTER LEVEL
+
+   -> In Composite Constraints data is compared with pairwise
+
+
+i. COMPOSITE PRIMARY KEY :
+--------------------------
+
+    -> Primary key constraint is added to morethan one column is called as composite primary 
+       constraint
+
+Example :
+---------
+
+  -> create a product master table with company id, product id, pname
+
+validations:
+------------
+
+  -> Company id and Product id  are mandatory
+
+  -> Compnay id and product id pair should not be allow duplicates
+
+Example:
+--------
+
+  Create table prod_mas( cid varchar2(10), pid varchar2(10), pname varchar2(15),
+				constraint prod_mas_cid_pid_pk primary key( cid, pid )
+			);
+
+Testing:
+---------
+
+Inserting data into table :
+---------------------------
+
+  insert into prod_mas values ( &cid, &pid, &pname );
+
+
+prod_mas
+--------
+
+cid	pid	pname     pk(cid,pid)
+----	----	------
+c1	p1	tea
+c1	p2      coffee
+c2	p1	tea
+c1	p1	soaps   -- error bcz., same pair is repeated
+c2     null     tea    -- error
+
+COMPOSITE FOREIGN KEY Constraint :
+----------------------------------
+
+   -> Foreign key constraint is added to morethan one column is called as composite foreign key             constraint
+
+   -> Composite Foreign key constraint is REFERENCED BY Composite PRIMARY KEY constraint only
+
+Example:
+--------
+
+  -> create a sales table with sales id, sales date, cid, pid, price
+
+validations:
+------------
+
+  -> cid and pid pair should be matched with prodcut master table of cid & pid
+
+  -> cid and pids are mandatory
+
+
+Table creation:
+---------------
+
+ Create table sales ( sl_id varchar2(10),
+		      sl_date date,
+		      cid varchar2(10) 
+				Constraint sales_cid_nn not null,
+	              pid varchar2(10)
+				Constraint sales_pid_nn not null,
+                      price number(8,2),
+				Constraint sales_cid_pid_comp_fk FOREIGN KEY( cid, pid )
+								REFERENCES prod_mas( cid, pid)
+                    );
+
+
+Testing:
+--------
+
+  Insert into sales values ( &sl_id, &sl_date, &cid, &pid, &price );
+
+sales
+------
+
+sl_id	sl_date		cid	pid	price
+-----	-------		-----	-----	-------
+s1	sysdate		c1	p1	100
+s2	sysdate		c2	p1	50
+s3	sysdate		c3	p1	400       -- error pair is not matched
+
+other example:
+--------------
+
+
+Library Management :
+--------------------
+
+
+stud_mas : Stud_id 	Std_name	Class  primary key ( stud_id, class )
+		s1	xxx		xi
+		s2	yyy		xi
+		s1	sss		xii
+		s2	hhh		xii
+		s3	ggg		xi
+
+Book_issue : Tno(pk)	stud_id(nn) 	Class(nn)	Book_id(fk)  foreign key( stud_id, class)
+              1           s1             xi               b1
+	      2           s3		 xii		  b2    -- book not issued
+
+
+iii. Composite CHECK constraint :
+---------------------------------
+
+  -> Check constraint is added to morethan one column is called as composite check constraint
+
+Example:
+---------
+
+   -> create a employee table with employee id, employee name, salary and commission
+
+validations:
+------------
+
+  -> Employee salary + comm should not be exceeds rs.10000
+
+Table creation:
+---------------
+
+  create table employ( empno number(10),
+		       ename varchar2(10),
+		       sal number(8,2),
+		       comm number(6,2),
+		       deptno number(2),
+			 constraint employ_sal_comm_comp_chk CHECK ( SAL + nvl(COMM,0) <=10000)
+		     );
+
+
+other examples :
+----------------
+
+  -> create a bank master table with accno, cname, odate, acc_type & balance
+
+validations:
+------------
+
+   -> if account type is 's' savings then minimum opening balance rs.500
+
+   -> if account type is 'c' current account then minimum opening balance rs.1000
+
+
+** How to add constraints in ALTER LEVEL :
+------------------------------------------
+
+   -> after table creation to add constraints to db tables is called as ALTER LEVEL constraints
+
+UNIQUE :
+--------
+
+  Alter Table employ ADD Constraint employ_empno_un UNIQUE(empno);
+
+				or
+
+               Alter Table employ ADD UNIQUE(empno);
+
+NOT NULL :
+----------
+
+  Alter Table Employ MODIFY ENAME Constraint employ_ename_nn NOT NULL;
+
+				or
+
+  Alter Table Employ MODIFY ENAME NOT NULL;
+
+
+DEFAULT :
+-------
+
+  ALTER Table Employ modify DOJ DEFAULT SYSDATE;
+
+CHECK :
+-------
+
+  ALTER TABLE EMPLOY ADD Constraint  employ_sal_chK CHECK ( Sal >=2000 )
+
+PRIMARY KEY Constraint :
+------------------------
+
+  Alter table Dept ADD Constraint dept_deptno_pk primary key ( deptno );
+
+
+FOREIGN KEY Constraint :
+------------------------
+
+  Alter table employ ADD Constraint Employ_Deptno_Fk FOREIGN KEY(Deptno) REFERENCES Dept(Deptno);
+
+ 
+** To see the all created constraint names
+
+        SELECT * FROM USER_CONSTRAINTS;
+
+        SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE FROM USER_CONSTRAINTS WHERE TABLE_NAME='EMP_DB';
+
+
+	SELECT * FROM USER_CONS_COLUMNS;
+
+        SELECT CONSTRAINT_NAME, COLUMN_NAME FROM USER_CONS_COLUMNS WHERE TABLE_NAME='EMP_DB';
+
+** How to rename a constraint Name :
+------------------------------------
+
+  Alter table employ Rename constraint employ_empno_un to Employ_Empno_unique;
+
+** How to Enable / Disable a constraint :
+-----------------------------------------
+
+  -> By default all constraints are Enabled
+
+To Disable a constraint :
+-------------------------
+
+   Alter Table employ Disable Constraint employ_Empno_un;
+
+   Alter Table employ Enable Constraint employ_Empno_un;
+
+** How to Drop a Constraint :
+-----------------------------
+
+  Alter Table Employ Drop Constraint Employ_Deptno_fk;
+
+
+	Constraint_type			Error_Code		Meta_char
+	---------------			-----------		----------
+
+	NOT NULL			-01400			C
+
+	UNIQUE				-00001			U
+
+	CHECK				-02290			C
+
+	PRIMARY KEY			-02291			P
+
+	FOREIGN KEY			-02292			R
+
+TABLE :
+--------
+
+  -- Create a bank master table with account number, customer name, address, mobileno, mail id,      opening date, account type and balance
+
+Validations:
+------------
+
+  -> Account No. is Mandatory 
+
+  -> Account No. should not be allow duplicates
+
+  -> customer name should be accepts only CAPITAL Letters
+
+  -> Mobileno Number 10 digits only
+
+  -> mail id should be contain '@'
+
+  -> mail id should be end with .com, .co.in
+
+  -> Opening date is system date
+
+  -> Account type should be accepts 's' or 'c'
+
+  -> if Account type is savings account then minimum opening balance rs.500
+
+  -> if Account type is current account then minimum opening balance rs.1000
+
+-- Create a Bank Trans. table with Trans. No, Account Number, Tdate, Trans. type, Tamount
+
+validations:
+------------
+
+  -> Trans. no. is mandatory and unique
+
+  -> Inserting Account No should be matched with bank master table of ACCNO
+
+  -> Trans. date is system  date
+
+  -> Trans. type should be accepts 'd' or 'w'
+
+  -> Minimum Trans. amount rs.1
+
+SUB-QUERIES :
+-------------
+
+What is a Query ?
+
+   -> Query means to requesting data from db tables
+
+   -> Basically Queries are classified into 3 types
+
+	i. Root Query
+
+	ii. Parent Query
+
+       iii. Child Query
+
+i. Root Query :
+---------------
+
+  -> The Query which is not depends upon another query output for it's conditional value is called as      ROOT QUERY
+
+		Ex:  Select * from Emp;
+
+ii. PARENT QUERY :
+------------------
+
+   -> The Query which is depends upon another query output for it's conditional value is called as       PARENT QUERY
+
+   -> PARENT QUERY is also called as OUTER QUERY  / DEPENDENT QUERY
+
+           ex: select * from emp where sal=(select max(sal) from emp );
+
+iii. CHILD QUERY :
+------------------
+
+   -> The query which returns OUTPUT to it's parents query is called as CHILD QUERY
+
+   -> Child query is also called as INNER QUERY / SUB-QUERY / INDEPENDENT QUERY
+
+	  ex: select * from emp where sal=(select max(sal) from emp );
+
+
+Sub-queries :
+-------------
+
+   -> Query within a Query is called as sub-query
+
+   -> Sub-queries are supported SELECT, UPDATE & DELETE statements
+
+   -> Sub-queries are placed in WHERE clause of SELECT, UPDATE & DELETE statments
+
+   -> Sub-queries are also placed in FROM clause and COLUMN_LIST of outer query
+
+   -> if Sub-queries are placed in FROM clause that type of queries is called as IN-LINE sub-queries
+
+          ex:  select * from (    );
+
+   -> if Sub-queries are placed in COLUMN_LIST that type of queries is called as SCALAR Sub-queries
+ 
+          ex:  select co1l, col2, (   ),  col4 from <table_name>;
+
+Restrictions:
+-------------
+
+    -> Sub-queries must be enclosed with in the brackets  (  )
+
+    -> Sub-queries are not supported ORDER BY clause
+
+    -> only IN-LINE Sub-queries are supported ORDER BY Clause
+
+    -> In Sub-queries Maximum 255 sub-queries can be nested
+
+Adv. :
+-------
+
+   -> by using sub-queries it improves the peformance while retrieving /manipulating data because       sub-queries holds interemediate results
+
+** There are two types of Sub-queries
+
+I. NON CO-RELATED SUB-QUERIES
+
+II. CO-RELATED SUB-QUERIES
+
+
+  ** In Non co-related Sub-queries first SUB-QUERY ( inner query ) is executed depends upon OUTPUT of      Sub-query the PARENT QUERY( OUTER QUERY) is executed
+
+I. NON CO-RELATED SUB-QUERIES :
+-------------------------------
+
+   -> Non co-related sub-queries are again classified into 3 types
+
+            i. single-row sub-query
+
+           ii. multi-row sub-query
+
+          iii. multi-column sub-query
+
+i. Single-row sub-query :
+-------------------------
+
+   -> Sub-Query returns single value is called as single row sub-query
+
+   -> In single row sub-queries sub-query outputs are compared with >, <, >=, <=, =, between, not       between, etc., operators
+
+
+-- waq to display SMITH employee and his coleagues
+
+          Select ename from emp where deptno=(Select deptno from emp where ename='SMITH');
+
+-- waq to display Maximum employee Salary Details
+
+	  select * from emp where sal=(	select max(sal) from emp );
+
+-- waq to display who are getting morethan all employee avg. salaries
+
+         select * from emp where sal> ( select avg(sal) from emp );
+          
+-- waq to display senior most employee record
+
+SQL> select * from emp where hiredate=(select min(hiredate) from emp );
+
+ EMPNO ENAME      JOB          MGR HIREDATE     SAL   COMM DEPTNO
+------ ---------- --------- ------ --------- ------ ------ ------
+  7369 SMITH      CLERK       7902 17-DEC-80    800            20         
+
+-- waq to display SMITH employee BOSS
+
+   	Select ename from emp where empno=(select mgr from emp where ename='SMITH');
+
+-- waq to display who are working NEW YORK location
+
+SQL> select * from emp where deptno=( select deptno from dept where loc='NEW YORK' );
+
+ EMPNO ENAME      JOB          MGR HIREDATE     SAL   COMM DEPTNO
+------ ---------- --------- ------ --------- ------ ------ ------
+  7782 CLARK      MANAGER     7839 09-JUN-81   2450            10
+  7839 KING       PRESIDENT        17-NOV-81   5000            10
+  7934 MILLER     CLERK       7782 23-JAN-82   1300            10
+  1001 kiran      clerk       7839 17-DEC-20   5000    100     10
+
+-- waq to display who are getting morethan all CLERKs salaries
+
+-- waq to display who are getting salaries in between 10 dept. salaries
+
+-- waq to display who are working with ACCOUNTING dept.
+
+-- waq to display who are workign with RESEARCH dept. and their salaries > 2000
+
+-- waq to display who are getting morethan FORD employee salaries
+
+-- waq to dipslay who are joined after joining of FORD employee
+
+-- waq to display lastest joining employee details
+
+
+II. Multi-row Sub-queries :
+---------------------------
+
+ -> Sub-query returns morethan one value is called as Multi-row Sub-queries
+
+ -> In Multi-row sub-queries sub-query outputs are compared with Special operators those are IN, ANY,     ALL & EXISTS operators
+
+Example:
+--------
+
+  -- waq to display who are working in ACCOUNTING and RESEARCH depts.
+
+        select * from emp where deptno IN ( select deptno from dept where dname='ACCOUNTING' Or
+								       dname='RESEARCH' );
+
+  -- waq to display Only BOSSES( SUPERIORS)
+
+        Select ename from emp where EMPNO IN ( SELECT MGR FROM EMP );
+
+  -- waq to display who are getting morethan ALL SALESMAN salaries
+
+SQL> SELECT * FROM EMP WHERE SAL > ALL( SELECT SAL FROM EMP WHERE JOB='SALESMAN');
+
+ EMPNO ENAME      JOB          MGR HIREDATE     SAL   COMM DEPTNO
+------ ---------- --------- ------ --------- ------ ------ ------
+  7782 CLARK      MANAGER     7839 09-JUN-81   2450            10
+  7698 BLAKE      MANAGER     7839 01-MAY-81   2850            30
+  7566 JONES      MANAGER     7839 02-APR-81   2975            20
+  7902 FORD       ANALYST     7566 03-DEC-81   3000            20
+
+  -- waq to display who are getting lessthan ANY SALESMAN salaries
+
+SQL> SELECT * FROM EMP WHERE SAL <ANY ( SELECT SAL FROM EMP WHERE JOB='SALESMAN');
+
+ EMPNO ENAME      JOB          MGR HIREDATE     SAL   COMM DEPTNO
+------ ---------- --------- ------ --------- ------ ------ ------
+  7369 SMITH      CLERK       7902 17-DEC-80    800            20
+  7900 JAMES      CLERK       7698 03-DEC-81    950            30
+  7876 ADAMS      CLERK       7788 12-JAN-83   1100            20
+  7521 WARD       SALESMAN    7698 22-FEB-81   1250    500     30
+  7654 MARTIN     SALESMAN    7698 28-SEP-81   1250   1400     30
+  7934 MILLER     CLERK       7782 23-JAN-82   1300            10
+  7844 TURNER     SALESMAN    7698 08-SEP-81   1500      0     30  
+
+  -- waq if any employees are working in 20th dept. then to increment 
+     						all employee salaries with 50%
+
+					
+EXISTS :
+--------
+
+   -> this operator returns TRUE / FALSE i.e., BOOLEAN value
+
+   -> if Sub-query executes successfully and returns atleast one record then EXISTS returns TRUE
+
+   -> if Sub-query executes successfully and no records are RETURNS then EXISTS returns FALSE
+
+Example:
+--------
+
+SQL>  select empno, sal, sal*0.5 from emp where EXISTS( select * from emp where deptno=20);
+
+ EMPNO    SAL SAL*0.5
+------ ------ -------
+  7369    800     400
+  7499   1600     800
+  7521   1250     625
+  7566   2975  1487.5
+  7654   1250     625
+  7698   2850    1425
+
+SQL> update emp set sal= sal + sal * 0.5 where exists ( select * from emp where deptno=20);
+
+15 rows updated.
+
+SQL> select * from emp;
+
+ EMPNO ENAME      JOB          MGR HIREDATE     SAL   COMM DEPTNO
+------ ---------- --------- ------ --------- ------ ------ ------
+  7369 SMITH      CLERK       7902 17-DEC-80   1200            20
+  7499 ALLEN      SALESMAN    7698 20-FEB-81   2400    300     30
+  7521 WARD       SALESMAN    7698 22-FEB-81   1875    500     30
+  7566 JONES      MANAGER     7839 02-APR-81 4462.5            20
+  7654 MARTIN     SALESMAN    7698 28-SEP-81   1875   1400     30
+
+III. MULTI-COLUMN SUB-QUERY :
+--------------------------
+
+  -> Sub-query returns morethan on COLUMN is called as Multi-column sub-queries
+
+  -> In Multi-column sub-queries no.of columns return by SUB-QUERY should be matched with NO.OF      COLUMNs in WHERE Clause of OUTER QUERY and corresponding columns datatypes should be same
+
+
+          ex: select col1, col2 from emp where ( col1, col2 ) = ( select col3, col4 from emp );
+
+  -> Multi-column sub-queries are also called as PAIR-WISE sub-queries
+
+Example:
+--------
+
+  -- waq to display dept.wise maximum salary employee details
+
+
+SQL> select * from emp where ( deptno, sal ) in ( select deptno, max(sal) from emp group by deptno);
+
+ EMPNO ENAME      JOB          MGR HIREDATE     SAL   COMM DEPTNO
+------ ---------- --------- ------ --------- ------ ------ ------
+  7698 BLAKE      MANAGER     7839 01-MAY-81   4275            30
+  7902 FORD       ANALYST     7566 03-DEC-81   4500            20
+  7788 SCOTT      ANALYST     7566 09-DEC-82   4500            20
+  1001 kiran      clerk       7839 17-DEC-20   7500    100     10
+  7839 KING       PRESIDENT        17-NOV-81   7500            10
+
+-- waq to display dept.wise bosses ( superiors )
+
+SQL> select ename from emp where (empno,deptno) in ( select mgr,deptno from emp );
+
+ENAME
+----------
+FORD
+BLAKE
+KING
+JONES
+SCOTT
+CLARK
+
+
+II. CO-RELATED SUB-QUERIES :
+----------------------------
+
+  -> In these queries in between main & sub-queries should have some co-relation is maintaing.
+
+  -> In Co-relation sub-queries first outer query is executed depends upon output of outer query the      inner query will be executed.
+
+  -> one of the outer query column is placed in sub-query where condition that outer query column is      called as co-related column
+
+  -> In these queries if outer query executes 'n' times sub-query also executes that no.of times
+
+
+syntax:
+-------
+
+    select col1, col2, .... from <table_name> where col1 = ( select col3, col4 from <table_name>
+								where col3=col1 );
+
+Example:
+--------
+
+Emp
+----
+empno	ename	sal	deptno
+-----	-----	----	------
+1001	king	5000	10
+1002	scott	4000	20
+1003	jones	3000	30
+1004	miller	2000	10
+1005	ward	1000	30
+1006	smith	1500	20
+
+-- waq to display who getting morethan their dept. avg. salaries
+
+10   3500
+20   2750
+30   2000
+
+	  1004	   miller    2000    10
+   select e.empno, e.ename, e.sal, e.deptno from emp e         3500
+					where e.sal > ( select avg(sal) from emp 
+					      2000			where deptno=e.deptno);
+											10
+
+ii. SCALAR SUB-QUERIES :
+------------------------
+
+  -> sub-queries are placed in column-list of OUTER QUERY Is called as SCALAR Sub-queries
+
+  -> In Scalar sub-queries sub-query should be return single value and single column only
+
+Example:
+--------
+
+  -- waq to display employee details and all employee sum of salaries
+
+
+     select Emp.*, (select sum(sal) from emp )  from emp;
+
+			or
+     select empno, ename, sal, deptno, ( select sum(sal) from emp )  from emp;
+
+ -- waq to display employee details and corresponding each employee dept.wise sum of salaries
+
+      select e.empno, e.ename, e.sal, e.deptno, ( select sum(sal) from emp where deptno=e.deptno)
+					from emp e;
+
+ -- waq to display dept.details and dept.wise min and max salaries
+
+QL> select d.deptno, d.dname, d.loc, (select min(sal) from emp where deptno=d.deptno) as min_sal,
+                                     (select max(sal) from emp where deptno=d.deptno) as max_sal
+            from dept d;
+
+DEPTNO DNAME          LOC           MIN_SAL MAX_SAL
+------ -------------- ------------- ------- -------
+    10 ACCOUNTING     NEW YORK         1950    7500
+    20 RESEARCH       DALLAS           1200    4500
+    30 SALES          CHICAGO          1425    4275
+    40 OPERATIONS     BOSTON
+
+NESTED SELECT :
+---------------
+
+  -> SELECT with in the SELECT is called as NESTED SELECT
+
+example:
+--------
+
+  -- WAQ to display no.of emps, no.of depts and no.of grades
+
+     Select (select count(*) from emp ) as No_of_emps,
+            (select count(*) from dept) as No_of_depts,
+            (select count(*) from salgrade) as No_of_grades
+	from Dual;
+
+
+SET OPERATORS :
+---------------
+
+  -> Set Operators are used to JOIN outputs of SELECT statements
+
+  -> SELECT statement should be contain equal no.of columns and corresponding columns datatype should      be same
+
+  -> Maximum 255 statements can be nested
+
+  -> There is no Operator Priority in SET OPERATORS all OPERATORS follows equal Priority
+
+TYPES OF SET OPERATORS :
+------------------------
+
+i. UNION ALL
+
+ii. UNION
+
+iii. INTERSECT
+
+iv. MINUS
+
+i. UNION ALL :
+--------------
+
+  -> it displays all records from query1 and query2
+
+         select job from emp where deptno=10
+			union all
+         select job from emp where deptno=20;
+
+ii. UNION :
+-----------
+ 
+ -> it displays matching records from query1 and query2 at one time and un-matched records from both     queries
+
+         select job from emp where deptno=10
+			union 
+         select job from emp where deptno=20;
+ 
+iii. INTERSECT :
+----------------
+
+   -> It displays matching records from query1 and query2 at one time
+
+         select job from emp where deptno=10
+			intersect
+         select job from emp where deptno=20;
+
+iv. MINUS :
+-----------
+
+  -> It displays un-matched records from query1 compare to query2
+
+       
+         select job from emp where deptno=10
+			minus
+         select job from emp where deptno=20;
+
+
+    SELECT JOB, NULL, NULL FROM EMP WHERE DEPTNO=10
+                     UNION ALL
+    SELECT NULL, JOB, NULL FROM EMP WHERE DEPTNO=20
+                     UNION ALL
+    SELECT NULL, NULL, JOB FROM EMP WHERE DEPTNO=30;
+
+
+PSEUDO COLUMNS :
+----------------
+
+   -> Oracle pre-defined columns are called as pseudo columns
+
+   -> Pseudo column is a column and not related to any table and it is applicable for any table
+
+   -> Oracle provides different types of Pseudo columns
+
+i. uid
+
+ii.user
+
+iii. sysdate
+
+iv. systimestamp
+
+v. rowid
+
+vi. rownum
+
+vii. level
+
+viii.currval
+
+ix. nextval
+
+
+i. uid :
+--------
+
+   -> it returns currently connected user identification number
+
+
+ii. user :
+----------
+
+   -> it returns currently connected user name
+
+
+iii.sysdate :
+-------------
+
+   -> it returns current server date and time
+
+iv. systimestamp :
+------------------
+
+  -> it returns current server date and time physically
+
+Example :
+---------
+
+  create table login_details ( user_id varchar2(10),
+			       user_name varchar2(20),
+			       login_time date,
+			       logout_time timestamp );
+
+SQL> INSERT INTO LOGIN_DETAILS VALUES( UID, USER, SYSDATE, SYSTIMESTAMP);
+
+1 row created.
+
+SQL> SELECT * FROM LOGIN_DETAILS;
+
+USER_ID    USER_NAME            LOGIN_TIM
+---------- -------------------- ---------
+LOGOUT_TIME
+---------------------------------------------------------------------------
+49         ORA7AM               23-DEC-20
+23-DEC-20 08.47.12.565000 AM
+
+v. ROWID:
+----------
+
+  -> Rowid is an Unique Number
+
+  -> rowids are generated at the time of inserting data 
+
+  -> Rowid is a 16bit hexa decimal value
+  
+  -> Rowid contains Block id, File id and Record Id
+
+  -> Rowid is stored in db permanently
+
+  -> Rowid returns position of record
+  
+Examples :
+----------
+
+  select rowid, empno, ename, sal, deptno from emp;
+
+  select rowid, dept.* from dept;
+  
+-- waq to display first record from the table
+
+ SQL> select * from emp where rowid=( select min(rowid) from emp );
+
+ EMPNO ENAME      JOB          MGR HIREDATE     SAL   COMM DEPTNO
+------ ---------- --------- ------ --------- ------ ------ ------
+  7369 SMITH      CLERK       7902 17-DEC-80   1680            20
+
+-- waq to display last record from the table
+
+SQL> select * from emp where rowid=( select max(rowid) from emp );
+
+ EMPNO ENAME      JOB          MGR HIREDATE     SAL   COMM DEPTNO
+------ ---------- --------- ------ --------- ------ ------ ------
+  1001 kiran      clerk       7839 17-DEC-20   8250    100     10
+
+-- waq to delete Duplicate Records from the Table
+
+files :
+-------
+
+emp.txt				oracle(db) EMPLOY
+-------
+1,king,4000			
+2,scott,3000
+1,king,4000
+3,jones,5000
+4,smith,800
+3,jones,5000
+
+table creation:
+---------------
+
+ Create table employ(empid number(10),
+		     ename varchar2(20),
+		     sal number(8,2)
+		    );
+
+ Insert into employ values ( 1, 'king', 4000 );
+ Insert into employ values ( 2, 'scott', 3000 );
+ Insert into employ values ( 1, 'king', 4000 );
+ Insert into employ values ( 3, 'jones', 5000 );
+ Insert into employ values ( 4, 'smith', 800 );
+ Insert into employ values ( 3, 'jones', 5000 );
+
+SQL> select rowid, empid, ename, sal from employ;
+
+ROWID               EMPID ENAME                   SAL
+------------------ ------ -------------------- ------
+AAAFH4AABAAALIBAAA      1 king                   4000
+AAAFH4AABAAALIBAAB      2 scott                  3000
+AAAFH4AABAAALIBAAC      1 king                   4000
+AAAFH4AABAAALIBAAD      3 jones                  5000
+AAAFH4AABAAALIBAAE      4 smith                   800
+AAAFH4AABAAALIBAAF      3 jones                  5000
+
+ 
+  Delete from employ where ROWID NOT IN (select min(rowid) from employ group by empid);
+						AAA
+						AAB
+						AAD
+						AAE
+
+-- waq to display DUPLICATE records from the table
+
+       SELECT * from employ where ROWID NOT IN (select min(rowid) from employ group by empid);
+
+ROWNUM :
+--------
+
+   -> Rownum returns unique value
+
+   -> Rownums are Generated based on SELECT statement output
+
+   -> Rownum is a Dynamic Value
+
+   -> Rownum is not stored in db permanently
+
+   -> Rownum returns Position of Record
+
+   -> On Rownum pseudo column >, >=, = , etc., operators are not supported only < & <= are supported
+
+   -> After SELECTED data from db tables then ROWNUMS are generated
+
+Example:
+--------
+
+   Select rownum, Emp.* from emp;
+
+   Select rownum, Emp.* from emp where deptno=10;
+ 
+   Select rownum, dept.* from dept;
+
+Other Examples :
+----------------
+
+ -- waq to display first two records from the table
+
+       select rownum, Emp.* from emp where rownum<=2;
+
+
+ -- waq to display last two records from the table
+
+MINUS :
+-------
+
+   -> It is one of the SET operator  
+
+   -> MINUS operator main functionality it displays un-matched records from query1 compare to query2
+
+A = { 1, 3, 4 }
+
+B = { 1, 2, 4, 5 }
+
+A - B = { 3 }
+
+	SELECT * FROM EMP WHERE ROWNUM<=14
+			MINUS
+	SELECT * FROM EMP WHERE ROWNUM<=12;
+
+NOTE:  Above query is a static query, because it displays 13 & 14 records only.  To write the query        dynamically
+
+         
+           select * from emp where rownum<=( select count(*) from emp )    
+					minus
+	   select * from emp where rownum<=( select count(*)-2 from emp );   
+
+
+** waq to display bank mini statement ( last 5 transactions)
+
+
+bank_trans:   accno,  tdate ,   ttype,   tamount
+
+        
+              select * from bank_trans where accno='sbi1'  
+						and       
+					rownum <=(select count(*) from bank_trans where accno='sbi1')
+					minus
+              select * from bank_trans where accno='sbi1'  
+						and       
+				rownum <=(select count(*)-5 from bank_trans where accno='sbi1');
+
+
+ -- waq to display top-5 maximum salaries
+
+SQL> select rownum, sal from ( select rownum, sal from emp order by sal desc) where rownum<=5;
+
+ROWNUM    SAL
+------ ------
+     1   5000
+     2   3000
+     3   3000
+     4   2975
+     5   2850
+
+ -- waq to display Nth maximum salary
+
+SQL> select rownum, sal from ( select rownum, sal from emp order by sal desc)
+              group by rownum , sal having rownum=&n;
+
+Enter value for n: 1
+
+ROWNUM    SAL
+------ ------
+     1   5000
+
+SQL> /
+Enter value for n: 5
+
+ROWNUM    SAL
+------ ------
+     5   2850
+
+SQL> /
+Enter value for n: 11
+
+ROWNUM    SAL
+------ ------
+    11   1250
+
+ 
+-- waq to display AlterNate Records ( even records )
+
+SQL>      select rownum, empno, ename, job, sal, deptno from emp
+                group by rownum, empno, ename, job, sal , deptno
+                                having mod(rownum,2)=0
+                                   order by rownum;
+
+ROWNUM  EMPNO ENAME      JOB          SAL DEPTNO
+------ ------ ---------- --------- ------ ------
+     2   7499 ALLEN      SALESMAN    1600     30
+     4   7566 JONES      MANAGER     2975     20
+     6   7698 BLAKE      MANAGER     2850     30
+     8   7788 SCOTT      ANALYST     3000     20
+    10   7844 TURNER     SALESMAN    1500     30
+    12   7900 JAMES      CLERK        950     30
+    14   7934 MILLER     CLERK       1300     10
+
+-- waq to display following format output
+
+*
+**
+***
+****
+*****
+
+SQL>   select rpad('*',rownum,'*') from emp where rownum<=5;
+
+RPAD('*',ROWNUM,'*')
+------------------------------------ 
+*
+**
+***
+****
+*****
+
+LEVEL :
+--------
+
+  -> It will arrange the SELECT statement output with INVERTED TREE Structure
+
+  -> It returns a Number
+
+  -> LEVEL pseudo columns is depends on Hierarchical Queries
+
+
+Hierarchical Queries :
+----------------------
+
+  -> These queries that are executed upon the tables that contains hierarchical data
+
+  -> if any table contains SELF FOREIGN KEY that tables are called as Hierarchical tables
+
+  -> To write Hierarchical queries we need the following....
+
+START WITH Clause :
+-------------------
+
+  -> It is Used to Identified Root Node of the Hierarchy
+
+  -> if Start with is ommitted then Oracle used all rows in the table as Root rows
+
+CONNECT BY PRIOR <condition>:
+------------------------------
+
+  - It is used to establish relationship between ROOT NODE and CHILD NODE of the Hierarchy
+
+  - After connect by CLAUSE it supports PRIOR keyword. PRIOR contains a condition that condition     should be contain COMPARASION operator
+
+WHERE clause :
+--------------
+
+   - used to filter the data without affecting other rows of the hierarchy
+
+EMP
+----
+EMPNO	ENAME	MGR
+-----	-----	----
+7369	SMITH	7902
+7566	JONES	7839
+7698	BLAKE	7839
+7900	ALLEN	7698
+7839	KING
+7902	FORD	7566
+7788	SCOTT	7566
+
+		SELECT ENAME FROM EMP START WITH ENAME='KING'
+						CONNECT BY PRIOR EMPNO=MGR;  
+
+
+
+					KING(7839)
+
+		JONES(7566)				BLAKE(7698)
+
+	FORD(7902)	SCOTT(7788)		ALLEN(7900)
+
+  SMITH(7369)
+		
+
+OUTPUT:
+-------
+
+KING		
+JONES
+FORD
+SMITH
+SCOTT
+BLAKE
+ALLEN
+
+
+** to display output with Hierarchical Format then Oracle provided one pre-defined PROCEDURE is    SYS_CONNECT_BY_PATH
+
+
+SQL> COLUMN ORG_CHART FORMAT A40;
+
+SQL> Select Ename, sys_connect_by_path(ename,'\') as org_chart
+				From Emp
+				  Start with Ename='KING'	
+					Connect by Prior Empno=Mgr;
+
+LEVEL :
+-------
+
+   Select Level, Ename From Emp
+			  Start with Ename='KING'	
+				Connect by Prior Empno=Mgr;
+
+** write a query to display following format output
+
+KING
+  JONES
+    SCOTT
+      ADAMS
+    FORD
+      SMITH
+  BALKE
+    ALLEN
+    .
+    .
+  CLARK
+    MILLER
+
+
+** by using RPAD Function & Level Pseudo column
+
+CURRVAL:
+--------
+NEXTVAL:
+--------
+    
+   -> These two pseudo columns are supported in SEQUENCES 
+
+SEQUENCE:
+---------
+
+  -> SEQUENCES are used to Generate Sequence of Numbers Automatically
+
+  -> Sequences are supports only NUMARIC Values
+
+  -> Sequences are not related one table and it is applicable for any table 
+
+  -> Sequences are supports two types of pseudo columns
+
+           i. currval : it returns current sequence value
+
+          ii. nextval : it returns comming generated sequence value
+
+  -> All created Sequence Names are stored in USER_SEQUENCES(system table)
+
+Syntax:
+-------
+
+Create sequence <sequence_name>
+start with <value>
+[minvalue <value>]
+increment by <value>
+[maxvalue <value>]
+[cache/nocache]
+[cycle/nocycle];
+
+
+ -> By default
+
+         -> minimum value is 1
+ 
+         -> maxvalue is un-limited
+
+         -> by default NOCACHE & NOCYCLE
+
+         -> Minimum CACHE Buffer Size is 2kb
+
+Example:
+--------
+Create sequence my_seq
+Start with 1
+Minvalue 1
+Increment by 1
+Maxvalue 5
+NOCACHE 
+NOCYCLE;
+/
+
+Table creation:
+---------------
+
+Create table emp_db( empno number(4),
+		     ename varchar2(15)
+		   );
+
+
+Inserting data into table :
+---------------------------
+
+SQL>   Insert into Emp_Db Values( my_seq.nextval, '&ename' );
+Enter value for ename: king
+
+1 row created.
+
+SQL> /
+Enter value for ename: scott
+
+1 row created.
+
+SQL> /
+Enter value for ename: jons
+
+1 row created.
+
+SQL> select * from emp_db;
+
+ EMPNO ENAME
+------ ---------------
+     1 king
+     2 scott
+     3 jons
+
+SQL>   Insert into Emp_Db Values( my_seq.nextval, '&ename' );
+Enter value for ename: smith
+
+1 row created.
+
+SQL> /
+Enter value for ename: ward
+
+1 row created.
+
+SQL> select * from emp_db;
+
+ EMPNO ENAME
+------ ---------------
+     1 king
+     2 scott
+     3 jons
+     4 smith
+     5 ward
+
+SQL>   Insert into Emp_Db Values( my_seq.nextval, '&ename' );
+Enter value for ename: allen
+  Insert into Emp_Db Values( my_seq.nextval, 'allen' )
+                             *
+ERROR at line 1:
+ORA-08004: sequence MY_SEQ.NEXTVAL exceeds MAXVALUE and cannot be instantiated
+
+
+** How to increment Sequence Max value :
+----------------------------------------
+
+   Alter Sequence my_seq maxvalue 10;
+
+** create a bank master table with accno, cust name, account type, balance.....
+
+validations:
+------------
+
+  -> account number should be generate automatically
+
+         ex:  sbi1, sbi2,....
+
+Example:
+--------
+
+ Create sequence accno_seq
+ start with 1
+ increment by 1;
+
+Table creation:
+---------------
+
+ Create table bank_mas
+ ( accno varchar2(10),
+   cust_name varchar2(10)
+ );
+
+Insert Into bank_mas values( 'sbi'||(accno_seq.nextval), '&cname',.... );
+
+** to see the created sequence names
+
+          select * from User_sequences;
+
+** to see the status to the sequence
+
+       select my_seq.currval from dual;
+
+** Dropping Sequences
+
+        Drop Sequence my_seq;
+
+JOINS :
+--------
+
+   -> To Retrieving data from morethan one table in a single query by using JOINS
+
+syntax:
+-------
+
+  Select table1.col1, table1.col2, table2.col1, table2.col2,.... from <table1>, <table2>,....
+							   Where <table1.column1=table2.column2>;
+
+
+   -> Joins queries are best example for Relational Databases
+
+   -> Join conditions are placed in WHERE clause of SELECT statement
+
+   -> only SELECT Statement supports JOIN queries
+
+   -> Join Queries are mainly used for to generate Reports like WEEKLY reports, Monthly reports,             Salary Statements, Invoices, Prograss reports, etc.,
+
+   -> if 'n' tables are Joined there will be n-1 join conditions are required
+
+
+TYPES OF JOINS :
+----------------
+
+ -> Oracle supports 5 types of JOINS
+
+I. EQUI JOIN / INNER JOIN / SIMPL JOIN
+
+II. NON-EQUI JOIN
+
+III. CARTESIAN JOIN
+
+IV. OUTER JOIN
+
+V. SELF JOIN
+
+  ** to write any type of join queries oracle returns ONE COMMON Error message is 
+
+SQL> SELECT DEPTNO FROM EMP, DEPT;
+SELECT DEPTNO FROM EMP, DEPT
+       *
+ERROR at line 1:
+ORA-00918: column ambiguously defined
+    
+
+
+** to overcome above error message then we must use before common column name to use TABLENAMES or    TABLE ALIASES
+
+TABLE ALAISE :
+--------------
+
+  -> Aliase Name is given to Next to Table Name is called as Table Alaise
+
+      ex: Emp e,  Employ_Master_table  EMT, etc.,
+
+
+            select emp.deptno from emp, dept;
+
+I. EQUI JOIN / SIMPLE JOIN :
+----------------------------
+
+  -> To Retrieving data from morethan one table in a single query by using EQUALITY operator in Join        condition is called as Equi Join.
+
+  -> To write Equi join queries, Joining tables should be contain atleast one similar column name and      corresponding columns datatypes should be same.
+ 
+
+Example :
+---------
+
+  -- write a query to display employee details and corresponding each employee dept. details.
+
+SQL> select * from emp, dept where emp.deptno=dept.deptno;      
+
+			or
+SQL> Select empno, ename, job, sal, emp.deptno, dept.deptno, dname, loc from emp, dept
+                                       where emp.deptno = dept.deptno;
+
+ EMPNO ENAME      JOB          SAL DEPTNO DEPTNO DNAME          LOC
+------ ---------- --------- ------ ------ ------ -------------- -------------
+  7369 SMITH      CLERK        800     20     20 RESEARCH       DALLAS
+  7499 ALLEN      SALESMAN    1600     30     30 SALES          CHICAGO
+  7521 WARD       SALESMAN    1250     30     30 SALES          CHICAGO
+  7566 JONES      MANAGER     2975     20     20 RESEARCH       DALLAS
+  7654 MARTIN     SALESMAN    1250     30     30 SALES          CHICAGO
+  7698 BLAKE      MANAGER     2850     30     30 SALES          CHICAGO
+  7782 CLARK      MANAGER     2450     10     10 ACCOUNTING     NEW YORK
+  7788 SCOTT      ANALYST     3000     20     20 RESEARCH       DALLAS
+  7839 KING       PRESIDENT   5000     10     10 ACCOUNTING     NEW YORK
+  7844 TURNER     SALESMAN    1500     30     30 SALES          CHICAGO
+  7876 ADAMS      CLERK       1100     20     20 RESEARCH       DALLAS
+  7900 JAMES      CLERK        950     30     30 SALES          CHICAGO
+  7902 FORD       ANALYST     3000     20     20 RESEARCH       DALLAS
+  7934 MILLER     CLERK       1300     10     10 ACCOUNTING     NEW YORK
+
+14 rows selected.
+
+
+-- waq to display who are working in NEW YORK location
+
+SQL> Select EMP.*, Loc from Emp, Dept where Emp.Deptno=Dept.Deptno
+                                                       and
+                                               loc = 'NEW YORK';
+
+ EMPNO ENAME      JOB          MGR HIREDATE     SAL   COMM DEPTNO LOC
+------ ---------- --------- ------ --------- ------ ------ ------ -------------
+  7782 CLARK      MANAGER     7839 09-JUN-81   2450            10 NEW YORK
+  7839 KING       PRESIDENT        17-NOV-81   5000            10 NEW YORK
+  7934 MILLER     CLERK       7782 23-JAN-82   1300            10 NEW YORK
+
+
+-- waq to display who are working in ACCOUNTING and SALES depts. and their salaries > 2000
+
+          select Emp.*, Dname from Emp, Dept where Emp.Deptno=Dept.Deptno
+							      and
+						   Dname in ('ACCOUNTING','SALES')
+							      and
+							SAL > 2000;
+
+ EMPNO ENAME      JOB          MGR HIREDATE     SAL   COMM DEPTNO DNAME
+------ ---------- --------- ------ --------- ------ ------ ------ --------------
+  7698 BLAKE      MANAGER     7839 01-MAY-81   2850            30 SALES
+  7782 CLARK      MANAGER     7839 09-JUN-81   2450            10 ACCOUNTING
+  7839 KING       PRESIDENT        17-NOV-81   5000            10 ACCOUNTING
+
+-- waq to display dept. details and dept.wise MIN, MAX and SUM of salaries
+
+SQL>       select dept.deptno, dname, loc, min(sal), max(sal), sum(sal)  from emp, dept
+                         where emp.deptno=dept.deptno group by dept.deptno, dname, loc
+                                                                        order by dept.deptno;
+
+DEPTNO DNAME          LOC           MIN(SAL) MAX(SAL) SUM(SAL)
+------ -------------- ------------- -------- -------- --------
+    10 ACCOUNTING     NEW YORK          1300     5000     8750
+    20 RESEARCH       DALLAS             800     3000    10875
+    30 SALES          CHICAGO            950     2850     9400
+
+Other examples :
+----------------
+
+bank_mas :  accno,	cname,		Odate,		acc_type,	balance
+
+bank_trans : Tno,	accno,		tdate,		ttype,		tamount
+
+
+table creations:
+----------------
+
+ Create table bank_mas( Accno varchar2(10) PRIMARY KEY,
+		        Cname Varchar2(15),
+			odate date,
+		        acc_type varchar2(1),
+		        balance number(8,2)
+		      );
+
+ Create table bank_Trans( Tno Number(4),
+			  Accno Varchar2(10) REFERENCES bank_mas(Accno),
+			  Tdate date,
+		          Ttype Varchar2(1),
+			  Tamount Number(8,2)
+			);
+
+-- waq to display customer details and corresponding each customer trans. details
+
+       select * from bank_mas, bank_trans
+			where Bank_mas.Accno = Bank_Trans.Accno;
+
+-- waq to display SBI1 customer details and corresponding customer trans. details for the month of    AUGUST - 2020
+     
+         Select bank_mas.Accno, Cname, Acc_type, Tdate, Ttype , Tamount
+					from Bank_mas, Bank_Trans
+						where Bank_mas.Accno=Bank_Trans.Accno
+								and
+						      Bank_mas.Accno='SBI1'
+								and
+					To_char(Tdate,'mm-yyyy') = '08-2020';
+
+-- waq to display SBI1 customer last month trans. details
+
+         select bank_mas.accno, cname, acc_type, Tdate, ttype, tamount
+				from bank_mas, bank_trans
+				   where bank_mas.accno = bank_trans.accno
+							and
+						bank_mas.accno='SBI1'
+							AND
+				to_char(tdate,'mm-yyyy')= to_char( add_months(sysdate,-1),'mm-yyyy');
+
+-- waq to display SBI1 customer current month till date trans. details
+
+          select Bank_mas.accno, cname, acc_type, tdate, ttype, tamount
+			 from bank_mas, bank_trans
+				where bank_mas.accno = bank_trans.accno
+						and
+					bank_mas.accno='SBI1'
+						and
+				to_char(tdate,'mm-yyyy') = to_char(sysdate,'mm-yyyy');
+
+			
+-- waq to display last month each customer howmany deposits and withdraws are completed
+
+           select bank_mas.accno, cname, ttype, count(ttype)
+			from bank_mas, bank_trans where Bank_mas.accno=bank_trans.accno
+				group by bank_mas.accno, cname, ttype
+						order by bank_mas.accno,ttype;
+OUTPUT:
+-------
+
+SBI1	D	5
+SBI1	W	10
+SBI2	D	2
+SBI2	W	0
+	
+-- WAQ to display in current month which customers are completed morethan 5 withdaws
+
+        select bank_mas.accno, Cname, Ttype, Count(ttype) from bank_mas, bank_trans
+						where bank_mas.Accno=bank_Trans.Accno
+								   and
+							      ttype = 'w'
+								   and
+		              to_char(tdate,'mm-yyyy')= to_char(sysdate,'mm-yyyy')
+						group by bank_mas.accno, Cname, Ttype
+								having  count(ttype)>5;
+
+-- is it SBI1 customer completed 5 withdraws in the current month ?
+
+      select bank_mas.accno, Cname, Ttype, Count(ttype) from bank_mas, bank_trans
+						where bank_mas.Accno=bank_Trans.Accno
+								   and
+							      bank_mas.accno='SBI1'
+								   and
+							      ttype = 'w'
+								   and
+		              to_char(tdate,'mm-yyyy')= to_char(sysdate,'mm-yyyy')
+						group by bank_mas.accno, Cname, Ttype
+								having  count(ttype)>5;
+
+
+
+
+
+				
+
+			
+
+         
+
+ 
+						
+					
+						 
+ 
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+	
+					KING
+ 
+			jones
+
+
+
+
+
+
+   
+
+        
+
+
+
+
+
+ 
+  
+ 
+ 
+13
+14
+
+MINUS
+
+ 
+
+
+   
+
+
+		
+
+
+
+
+
+  
+
+
+            
+
+
+
+
+
+  
+  
+
+
+
+
+								
+
+ 
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+			
+
+
+
+
+
+   
+
+
+
+   
+
+
+ 
+
+   
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+    
+
+
+
+
+  
+ 
+
+

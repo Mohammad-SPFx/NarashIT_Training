@@ -1,0 +1,93 @@
+HTML
+
+Java Script
+
+      1. How to take the ref of elements
+      2. call,apply and bind
+      3. AJAX,Promises
+      4. Arrow functions
+      5. Object destruction
+      6. setTimout & setInterval
+      7. class & Object
+      8. imports & exports
+
+React
+      1. Why we go for react
+      2. Virtual DOM
+      3. How to prepare template(component) , how to load
+      4. How to handle Events
+      5. How to take the data from input controls(3 ways)
+      6. How to validate the data
+      7. How to apply styles dynamically
+      8. How to bind data into view
+      9. How to handle AJAX(req,res)
+      10. var vs let vs const vs state vs props
+      11. How to create reusable componets
+      12. communication b/w components
+      13. React.context
+      14. Life cycle methods
+      15. React.Framment
+      16. Exception Handling
+      17. Conditional rendering
+      18. Higher Order Component
+      19. state less vs state full components
+      20. Controlled vs uncontrolled components
+      21. React Routing
+      22. Webpack
+      23. react(client) + node js(Server) + mySql
+      24. test cases
+      25. pure componet vs React.memo
+      26. How to build & deploy code in godaddy & aws(Git)
+      
+      
+
+React + Redux
+      1. How to integrate Redux into react application
+           a.actions
+           b.reducers
+           c.store
+      2. Logger
+      3. Thunk
+      4. Saga
+      5. Redux Forms
+      6.react+redux(client) + node js(Server) + MongoDB +boolstrap
+
+Hooks
+      1. useState
+      2. useEffect
+      3. useRef
+      4. useMemo
+      5. useCallback
+      6. useContext
+      7. useReducer
+      8. react Hooks(client) + node js(Server) + Oracle +Materal UI
+
+React Native
+
+
+10-12-2020	https://vimeo.com/490590639	nIT$reacT
+11-12-2020	https://vimeo.com/490590668	NIT@Srinu
+14-12-2020	https://vimeo.com/490590553	re@ct_JS
+15-12-2020	https://vimeo.com/491036318	nIT$reacT
+16-12-2020	https://vimeo.com/491479241	NIT@Srinu
+17-12-2020	https://vimeo.com/492374270	NIT@Srinu
+18-12-2020	https://vimeo.com/492347481	nIT$reacT
+21-12-2020	https://vimeo.com/493214043	Srinu@NiT
+22-12-2020	https://vimeo.com/493610816	NIT@Srinu
+23-12-2020      https://vimeo.com/493997084     Srinu@NiT
+24-12-2020      https://vimeo.com/494327608     NIT@Srinu
+
+28-12-2020 
+https://vimeo.com/495095434 
+Srinu@ReactJS 
+
+29-12-2020 
+https://vimeo.com/495386709 
+Srinu@NiT
+
+30-12-2020	https://vimeo.com/495672095	NIT@Srinu	Part-1
+                https://vimeo.com/495672149	               Srinu@NiT	                Part-2
+
+
+
+Visual Studio Code
